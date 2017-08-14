@@ -5,4 +5,5 @@ class User < ApplicationRecord
   # ajouter collection pour :species & :planet => seed
   validates :species, inclusion: { in: ['Anx', 'Humain', 'Jedi', 'Ewok', 'Droid'], allow_nil: false }
   validates :planet, presence: true, inclusion: { in: ['Tatawin', 'Pipada', 'Kamino', 'Dagobah'], allow_nil: false }
+
 end
