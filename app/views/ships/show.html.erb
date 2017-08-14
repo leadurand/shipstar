@@ -1,0 +1,20 @@
+<div class="container text-center">
+  <h1>Details</h1>
+
+  <div>
+    <h2><%= @ship.name %></h2>
+    <p><%= @ship.category %></p>
+    <p><%= @ship.address %></p>
+    <p><%= @ship.price %></p>
+  </div>
+
+  <div>
+    <%= render 'bookings/form' %>
+  </div>
+
+  <div>
+    <%= link_to 'back to research', ship_path, class: 'btn btn-info' %>
+  </div>
+
+
+</div>
