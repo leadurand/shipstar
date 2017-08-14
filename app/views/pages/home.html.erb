@@ -1,2 +1,11 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="wrapper">
+	<div class="container">
+		<h1>Find the nearest starship</h1>
+		<h2>Cheaper, nearer, more convenient</h2>
+		<%= simple_form_for(@ship) do |f| %>
+		  <%= f.input :address %>
+		  <%= f.button :submit %>
+		<% end %>
+	</div>
+</div>
+
