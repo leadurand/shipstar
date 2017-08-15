@@ -40,8 +40,9 @@ while species["next"] != nil
   species = serialized(open(species["next"]).read)
 end
 
-  lastspe = serialized(open("http://swapi.co/api/species/?page=4").read)
-  fetch_db_species(lastspe["results"])
+lastspe = serialized(open("http://swapi.co/api/species/?page=4").read)
+fetch_db_species(lastspe["results"])
+
 
 # populate planets table with API "name"
 
@@ -57,9 +58,14 @@ while planets["next"] != nil
   planets = serialized(open(planets["next"]).read)
 end
 
-  lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
-  fetch_db_planets(lastplan["results"])
+lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
+fetch_db_planets(lastplan["results"])
 #trouver une solution pour faire une derniere boucle... loop do ?
+# loop do
+#   fetch_db_species(species["results"])
+#   species = serialized(open(species["next"]).read)
+#   break if species["next"].nil?
+# end
 
 # populate ships-infos table with API "model" and "starship_class"
 
@@ -75,8 +81,8 @@ while starships["next"] != nil
   starships = serialized(open(starships["next"]).read)
 end
 
-  lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
-  fetch_db_shipsinfos(lastship["results"])
+lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
+fetch_db_shipsinfos(lastship["results"])
 
 #Create 10 users and get goods planets and species from API and ids from table
 
