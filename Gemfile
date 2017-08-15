@@ -12,6 +12,8 @@ gem 'redis'
 gem 'devise'
 gem 'faker'
 gem 'swapi'
+# gem 'random-location'
+# gem 'geocoder'
 
 # front-end
 gem 'autoprefixer-rails'
@@ -34,6 +36,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'faker'
   gem 'swapi'
+  # gem 'random-location'
+  # gem 'geocoder'
 end
 
 

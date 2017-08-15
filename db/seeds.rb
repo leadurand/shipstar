@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
+time = Time.now
+puts "Go get yourself a coffee... It's going to be a long ride!"
+puts "No hyperspeed here ;) -> Estimated time ~5min"
+puts "Btw, did you bundle install & db:migrate? If not, interrupt now and do it!"
 
 # base method for serialization
 
@@ -19,6 +23,8 @@ def random(table)
   table.order("RANDOM()").first.id
 end
 
+# PURGE DB
+puts "[PURGE in #{(Time.now - time).round} sec] Let's destroy all our data!"
 Booking.destroy_all
 Ship.destroy_all
 User.destroy_all
@@ -28,8 +34,8 @@ Planet.destroy_all
 ShipsModel.destroy_all
 ShipsClass.destroy_all
 
-# populate species table with API "name" and "classification"
-
+# [SPECIES] Populate species table with API "name" and "classification"
+puts "[SPECIES in #{(Time.now - time).round} sec] Creating all the species in the galaxy! Feeling like a God?"
 def fetch_db_species_classes(url)
   url.each do |specie|
     SpeciesClass.create(name: specie["classification"])
@@ -48,6 +54,7 @@ def fetch_db_species(url)
   end
 end
 
+
 species = serialized(open("http://swapi.co/api/species/").read)
 while species["next"] != nil
   fetch_db_species_classes(species["results"])
@@ -56,125 +63,117 @@ while species["next"] != nil
 end
 
 lastspe = serialized(open("http://swapi.co/api/species/?page=4").read)
+fetch_db_species_classes(lastspe["results"])
 fetch_db_species(lastspe["results"])
 
 
-# populate planets table with API "name"
+# [PLANETS] populate planets table with API "name"
+puts "[PLANETS in #{(Time.now - time).round} sec] Crafting beautiful planets right now!"
 
-# def fetch_db_planets(url)
-#   url.each do |planet|
-#     Planet.create(name: planet["name"])
-#   end
+def fetch_db_planets(url)
+  url.each do |planet|
+    Planet.create(name: planet["name"])
+  end
+end
+
+planets = serialized(open("http://swapi.co/api/planets/").read)
+while planets["next"] != nil
+  fetch_db_planets(planets["results"])
+  planets = serialized(open(planets["next"]).read)
+end
+
+lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
+fetch_db_planets(lastplan["results"])
+#trouver une solution pour faire une derniere boucle... loop do ?
+# loop do
+#   fetch_db_species(species["results"])
+#   species = serialized(open(species["next"]).read)
+#   break if species["next"].nil?
 # end
 
-# planets = serialized(open("http://swapi.co/api/planets/").read)
-# while planets["next"] != nil
-#   fetch_db_planets(planets["results"])
-#   planets = serialized(open(planets["next"]).read)
-# end
+# populate ships-models table with API "model" and "starship_class"
 
-# lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
-# fetch_db_planets(lastplan["results"])
-# #trouver une solution pour faire une derniere boucle... loop do ?
-# # loop do
-# #   fetch_db_species(species["results"])
-# #   species = serialized(open(species["next"]).read)
-# #   break if species["next"].nil?
-# # end
 
-# # populate ships-infos table with API "model" and "starship_class"
+# [USERS] Create 70 users and get goods planets and species from API and ids from table
+puts "[USERS in #{(Time.now - time).round} sec] Here we are! Populating the galaxy :D"
+puts "This might take a while..."
 
-# def fetch_db_shipsinfos(url)
-#   url.each do |ships_info|
-#     ShipsInfo.create(name: ships_info["model"], ship_class: ships_info["starship_class"])
-#   end
-# end
+1.upto(70) do |n|
+  # user #17 does not exist. Surely we might find a better solution...
+  if n == 17
+    next
+  else
+    person = serialized(Swapi.get_person(n))
+    planet = serialized(open(person["homeworld"]).read)["name"] unless person["homeworld"].empty?
+    p_id = Planet.find_by(name: planet).id unless person["homeworld"].empty?
+    specie = serialized(open(person["species"].first).read)["name"] unless person["species"].empty?
+    s_id = Specie.find_by(name: specie).id unless person["species"].empty?
 
-# starships = serialized(open("http://swapi.co/api/starships/").read)
-# while starships["next"] != nil
-#   fetch_db_shipsinfos(starships["results"])
-#   starships = serialized(open(starships["next"]).read)
-# end
+    User.create!(
+      name: person["name"],
+      planet_id: p_id,
+      specie_id: s_id,
+      email: Faker::Internet.email,
+      password: '123456'
+    )
+  end
+end
 
-# lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
-# fetch_db_shipsinfos(lastship["results"])
+# [SHIPS] Next steps -> generate real addresses with reverse/geocoding
+# -> fetch real prices of ships to determine rental value
+puts "[SHIPS in #{(Time.now - time).round} sec] Designing the best vehicules for our dear clients!"
 
-# #Create 10 users and get goods planets and species from API and ids from table
+def fetch_db_ships_classes(url)
+  url.each do |ships_class|
+    ShipsClass.create(name: ships_class["starship_class"])
+  end
+end
 
-# 1.upto(10) do |n|
-#   person = serialized(Swapi.get_person(n))
-#   planet = serialized(open(person["homeworld"]).read)["name"]
-#   p_id = Planet.find_by(name: planet).id
-#   specie = serialized(open(person["species"].first).read)["name"]
-#   s_id = Specie.find_by(name: specie).id
+def fetch_db_ships_models(url)
+  url.each do |ships_model|
+    ships_class = ShipsClass.find_by(name: ships_model["starship_class"])
+    if ships_class.nil?
+      next
+    else
+      ships_class_id = ships_class.id
+      ShipsModel.create(name: ships_model["name"], ships_class_id: ships_class_id)
+    end
+  end
+end
 
-#   User.create!(
-#     name: person["name"],
-#     planet_id: p_id,
-#     specie_id: s_id,
-#     email: Faker::Internet.email,
-#     password: '123456'
-#   )
-# end
+# Why don't we use the gem -> gem 'tatooine' or others?
+starships = serialized(open("http://swapi.co/api/starships/").read)
+while starships["next"] != nil
+  fetch_db_ships_classes(starships["results"])
+  fetch_db_ships_models(starships["results"])
+  starships = serialized(open(starships["next"]).read)
+end
 
-# # # A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
+lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
+fetch_db_ships_classes(lastship["results"])
+fetch_db_ships_models(lastship["results"])
 
-# Ship.create(
-#   name: "Nasa",
-#   address: "Cours Balguerie, Bordeaux",
-#   price: 100,
-#   ships_info_id: random(ShipsInfo),
-#   user_id: random(User)
-# )
+1.upto(50) do |n|
+  Ship.create(
+    name: Faker::Space.nasa_space_craft,
+    address: Faker::Address.country,
+    price: rand(10000..100000),
+    ships_model_id: random(ShipsModel),
+    user_id: random(User)
+  )
+end
 
-# Ship.create(
-#   name: "Wagon",
-#   address: "Rue Bert, Le Bouscat",
-#   price: 800,
-#   ships_info_id: random(ShipsInfo),
-#   user_id: random(User)
-# )
+# [BOOKINGS] -> I modified the generator to be sure that the ship is associated with its owner
+puts "[BOOKINGS in #{(Time.now - time).round} sec] Let's do some business!"
 
-# Ship.create(
-#   name: "Titanic",
-#   address: "4 avenue Thiers, Bordeaux",
-#   price: 50,
-#   ships_info_id: random(ShipsInfo),
-#   user_id: random(User)
-# )
+1.upto(100) do |n|
+  Booking.create(
+    #We're so lucky here, Ruby generates the weekday appropriately!
+  start_at: "Mon, #{rand(1..15)} Aug 2017 21:20:44 UTC +00:00",
+  end_at: "Mon, #{rand(16..31)} Aug 2017 21:20:44 UTC +00:00",
+  user_id: random(User),
+  ship_id: random(Ship)
+  )
+end
 
-# Ship.create(
-#   name: "XR45",
-#   address: "200 avenue Thiers, Bordeaux",
-#   price: 50,
-#   ships_info_id: random(ShipsInfo),
-#   user_id: random(User)
-# )
-
-# Booking.create(
-#   start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
-#   end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
-#   user_id: random(User),
-#   ship_id: random(Ship)
-# )
-
-# Booking.create(
-#   start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
-#   end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
-#   user_id: random(User),
-#   ship_id: random(Ship)
-# )
-
-# Booking.create(
-#   start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
-#   end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
-#   user_id: random(User),
-#   ship_id: random(Ship)
-# )
-
-# Booking.create(
-#   start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
-#   end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
-#   user_id: random(User),
-#   ship_id: random(Ship)
-# )
+puts " DONE in #{(Time.now - time).round} sec"
