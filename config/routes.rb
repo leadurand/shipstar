@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'pages#home'
   resources :ships, only: [:index, :show], shallow: true do
     resources :bookings, only: [:show, :destroy, :create]

@@ -8,6 +8,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.5'
 gem 'redis'
+gem 'devise'
 
 # front-end
 gem 'autoprefixer-rails'
