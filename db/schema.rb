@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815161925) do
+ActiveRecord::Schema.define(version: 20170815165014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,16 @@ ActiveRecord::Schema.define(version: 20170815161925) do
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
-    t.string   "classification"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "species_class_id"
+    t.index ["species_class_id"], name: "index_species_on_species_class_id", using: :btree
+  end
+
+  create_table "species_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170815161925) do
   add_foreign_key "ships", "ships_models"
   add_foreign_key "ships", "users"
   add_foreign_key "ships_models", "ships_classes"
+  add_foreign_key "species", "species_classes"
   add_foreign_key "users", "planets"
   add_foreign_key "users", "species", column: "specie_id"
 end
