@@ -5,8 +5,10 @@ class ShipsController < ApplicationController
 	end
 	def index
 		# get the query string from the params and do the search
-		@address = params[:search]
-		@ships = Ship.where("address LIKE ?", "%#{@address}%")
+		@address = params[:city]
+		@ships_info = params[:category]
+		@ship_class = ShipsInfo.find(@ships_info).ship_class
+		@ships = Ship.joins(:ships_info).where("address LIKE ?", "%#{@address}%").where("ships_infos.ship_class LIKE ?", "%#{@ship_class}%")
 	end
 
 	private
