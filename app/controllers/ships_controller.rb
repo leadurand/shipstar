@@ -5,12 +5,8 @@ class ShipsController < ApplicationController
 	end
 	def index
 		# get the query string from the params and do the search
-		# supprimer l'utf8 de la query et mettre query
-		@ships = if params[:address]
-			Ship.where("name LIKE ?", "%#{params[:address]}%")
-		else
-			Ship.all
-		end
+		@address = params[:search]
+		@ships = Ship.where("address LIKE ?", "%#{@address}%")
 	end
 
 	private

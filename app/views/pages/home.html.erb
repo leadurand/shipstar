@@ -2,8 +2,8 @@
 	<div class="container">
 		<h1>Find the best starship</h1>
 		<h2>Cheaper, nearer, more convenient</h2>
-		<%= simple_form_for(@ship, method: :get, input: :search)  do |f| %>
-		  <%= f.input :address, label: false, placeholder: 'Ville'%>
+		<%= simple_form_for(@ship, method: :get)  do |f| %>
+		  <%= f.input_field :address, name: "search", label: false, placeholder: 'Your city'%>
 		  <%= f.submit "Search a starship", name: nil, class: "btn btn-primary" %>
 		<% end %>
 	</div>
@@ -11,7 +11,10 @@
 <div class="wrapper">
 	<div class="container">
 		<% @ships.each do |ship| %>
+			<p><%= ship.user.name %></p>
+			<p><%= ship.ships_info.name %></p>
 			<p><%= ship.address %></p>
+			<p><%= ship.ships_info.ship_class %></p>
 		<% end %>
 	</div>
 </div>
