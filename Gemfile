@@ -3,12 +3,15 @@ ruby '2.3.4'
 
 # back-end
 gem 'figaro'
+gem 'omniauth-facebook'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.5'
 gem 'redis'
 gem 'devise'
+gem 'faker'
+gem 'swapi'
 
 # front-end
 gem 'autoprefixer-rails'
