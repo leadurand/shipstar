@@ -4,3 +4,7 @@
 <h3> Owner: <%= link_to @booking.user.name, '#' %> from <%= @booking.user.planet %> </h3>
 <h3> Location of your ship: <%= @booking.ship.address %></h3>
 <h3>Price: <%= @booking.ship.price %> credits</h3>
+
+<%= link_to "Delete my booking", bookings_path,
+      method: :delete,
+      data: { confirm: "Sure, are you?" } %>
