@@ -4,7 +4,6 @@
 		<h2>Cheaper, nearer, more convenient</h2>
 		<%= simple_form_for(@ship, method: :get, input: :search)  do |f| %>
 		  <%= f.input :address, label: false, placeholder: 'Ville'%>
-		  <%= f.input :category, placeholder: 'Patrol Craft', collection: ['Patrol craft', 'Assault Starfighter', 'Deep Space Mobile Battlestation', 'Starfighter', 'landingcraft', 'star dreadnought', 'Armed government transport', 'Escort Ship'] %>
 		  <%= f.submit "Search a starship", name: nil, class: "btn btn-primary" %>
 		<% end %>
 	</div>
@@ -12,7 +11,6 @@
 <div class="wrapper">
 	<div class="container">
 		<% @ships.each do |ship| %>
-			<h2><%= ship.category %></h2>
 			<p><%= ship.address %></p>
 		<% end %>
 	</div>
