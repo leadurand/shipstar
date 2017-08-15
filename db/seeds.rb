@@ -171,8 +171,10 @@ puts "[BOOKINGS in #{(Time.now - time).round} sec] Let's do some business!"
     #We're so lucky here, Ruby generates the weekday appropriately!
   start_at: "Mon, #{rand(1..15)} Aug 2017 21:20:44 UTC +00:00",
   end_at: "Mon, #{rand(16..31)} Aug 2017 21:20:44 UTC +00:00",
-  user_id: random(User),
-  ship_id: random(Ship)
+  content: Faker::StarWars.quote,
+  rating: (rand(0.0..5.0)).round(1),
+  user_id: User.all.sample.id,
+  ship_id: Ship.all.sample.id
   )
 end
 
