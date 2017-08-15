@@ -3,9 +3,9 @@
 
   <div>
     <h2><%= @ship.name %></h2>
-    <p><%= @ship.category %></p>
-    <p><%= @ship.address %></p>
-    <p><%= @ship.price %></p>
+    <p>Address : <%= @ship.address %></p>
+    <p>Immatriculation : <%= @ship.ships_info.name %></p>
+    <p>Price : <%= @ship.price %></p>
   </div>
 
   <div>
@@ -13,7 +13,7 @@
   </div>
 
   <div>
-    <%= link_to 'back to research', ships_path, class: 'btn btn-info' %>
+    <%= link_to 'back to research', ships_path%>
   </div>
 
 
