@@ -1,14 +1,15 @@
 class BookingsController < ApplicationController
 
   def create
-    @booking = current_user.bookings.new(booking_params)
     @ship = Ship.find(params[:ship_id])
+    @user = User.find(params[:ship_id])
+    @booking = @user.bookings.new(booking_params)
     @booking.ship = @ship
 
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render ship_path(@ship)
+      render "ships/show"
     end
   end
 
