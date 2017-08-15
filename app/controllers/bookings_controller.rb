@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-
+  
   def create
     @booking = current_user.bookings.new(booking_params)
     @ship = Ship.find(params[:ship_id])
@@ -10,6 +10,23 @@ class BookingsController < ApplicationController
     else
       render ship_path(@ship)
     end
+  end
+
+  def index
+    # => PENDING LOGIN FEATURE
+    # @bookings = current_user.bookings
+    @bookings = Booking.all
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+  
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+
+    redirect_to bookings_path
   end
 
   private
