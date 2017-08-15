@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  
+
   def create
     @booking = current_user.bookings.new(booking_params)
     @ship = Ship.find(params[:ship_id])
@@ -13,15 +13,13 @@ class BookingsController < ApplicationController
   end
 
   def index
-    # => PENDING LOGIN FEATURE
-    # @bookings = current_user.bookings
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
   def show
     @booking = Booking.find(params[:id])
   end
-  
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
