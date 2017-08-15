@@ -1,0 +1,2 @@
+class ShipsClass < ApplicationRecord
+end
