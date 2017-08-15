@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170815153820) do
+ActiveRecord::Schema.define(version: 20170815165014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +37,10 @@ ActiveRecord::Schema.define(version: 20170815153820) do
     t.string   "address"
     t.integer  "price"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "ships_info_id"
-    t.index ["ships_info_id"], name: "index_ships_on_ships_info_id", using: :btree
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "ships_model_id"
+    t.index ["ships_model_id"], name: "index_ships_on_ships_model_id", using: :btree
     t.index ["user_id"], name: "index_ships_on_user_id", using: :btree
   end
 
@@ -53,16 +52,24 @@ ActiveRecord::Schema.define(version: 20170815153820) do
 
   create_table "ships_models", force: :cascade do |t|
     t.string   "name"
-    t.string   "ship_class"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "ships_class_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["ships_class_id"], name: "index_ships_models_on_ships_class_id", using: :btree
   end
 
   create_table "species", force: :cascade do |t|
     t.string   "name"
-    t.string   "classification"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "species_class_id"
+    t.index ["species_class_id"], name: "index_species_on_species_class_id", using: :btree
+  end
+
+  create_table "species_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,8 +103,10 @@ ActiveRecord::Schema.define(version: 20170815153820) do
 
   add_foreign_key "bookings", "ships"
   add_foreign_key "bookings", "users"
-  add_foreign_key "ships", "ships_models", column: "ships_info_id"
+  add_foreign_key "ships", "ships_models"
   add_foreign_key "ships", "users"
+  add_foreign_key "ships_models", "ships_classes"
+  add_foreign_key "species", "species_classes"
   add_foreign_key "users", "planets"
   add_foreign_key "users", "species", column: "specie_id"
 end
