@@ -1,4 +1,8 @@
 class ShipsController < ApplicationController
+	def show
+	  @ship = Ship.find(params[:id])
+	  @booking = Booking.new
+	end
 	def index
 		# get the query string from the params and do the search
 		# supprimer l'utf8 de la query et mettre query

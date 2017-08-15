@@ -8,6 +8,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.5'
 gem 'redis'
+gem 'devise'
 
 # front-end
 gem 'autoprefixer-rails'
@@ -28,6 +29,8 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'faker'
+  gem 'swapi'
 end
 
 
