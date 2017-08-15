@@ -3,6 +3,7 @@ ruby '2.3.4'
 
 # back-end
 gem 'figaro'
+gem 'omniauth-facebook'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
