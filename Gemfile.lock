@@ -200,8 +200,8 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  faker
   devise
+  faker
   figaro
   font-awesome-sass
   jbuilder (~> 2.0)

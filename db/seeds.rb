@@ -22,6 +22,7 @@ end
 User.destroy_all
 Specie.destroy_all
 Planet.destroy_all
+ShipsInfo.destroy_all
 
 # populate species table with API "name" and "classification"
 
@@ -87,88 +88,90 @@ end
   User.create!(
     name: person["name"],
     planet_id: p_id,
-    specie_id: s_id
+    specie_id: s_id,
+    email: Faker::Internet.email,
+    password: '123456'
   )
 end
 
-# A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
+# # A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
 
-randuser_id = random(User)
-randship_id = random(Ship)
-randshipsinfo_id = random(ShipsInfo)
+# randuser_id = random(User)
+# randship_id = random(Ship)
+# randshipsinfo_id = random(ShipsInfo)
 
-Ship.create(
-  name: "Nasa",
-  address: "Cours Balguerie, Bordeaux",
-  price: 100,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
-)
+# Ship.create(
+#   name: "Nasa",
+#   address: "Cours Balguerie, Bordeaux",
+#   price: 100,
+#   ships_info_id: randshipsinfo_id,
+#   user_id: randuser_id
+# )
 
-Ship.create(
-  name: "Wagon",
-  address: "Rue Bert, Le Bouscat",
-  price: 800,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
-)
+# Ship.create(
+#   name: "Wagon",
+#   address: "Rue Bert, Le Bouscat",
+#   price: 800,
+#   ships_info_id: randshipsinfo_id,
+#   user_id: randuser_id
+# )
 
-Ship.create(
-  name: "Titanic",
-  address: "4 avenue Thiers, Bordeaux",
-  price: 50,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
-)
+# Ship.create(
+#   name: "Titanic",
+#   address: "4 avenue Thiers, Bordeaux",
+#   price: 50,
+#   ships_info_id: randshipsinfo_id,
+#   user_id: randuser_id
+# )
 
-Ship.create(
-  name: "XR45",
-  address: "200 avenue Thiers, Bordeaux",
-  price: 50,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
-)
+# Ship.create(
+#   name: "XR45",
+#   address: "200 avenue Thiers, Bordeaux",
+#   price: 50,
+#   ships_info_id: randshipsinfo_id,
+#   user_id: randuser_id
+# )
 
-Booking.create(
-  start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
-)
+# Booking.create(
+#   start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: randuser_id,
+#   ship_id: randship_id
+# )
 
-Booking.create(
-  start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
-)
+# Booking.create(
+#   start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: randuser_id,
+#   ship_id: randship_id
+# )
 
-Booking.create(
-  start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
-)
+# Booking.create(
+#   start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: randuser_id,
+#   ship_id: randship_id
+# )
 
-Booking.create(
-  start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
-)
+# Booking.create(
+#   start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: randuser_id,
+#   ship_id: randship_id
+# )
 
 
 # modif de schema :
 
-rails g migration RemoveCategoryFromShip category:string
-rails g migration RemoveSpeciesFromUser species:string
-rails g migration RemovePlanetFromUser planet:string
-rails g model ShipsInfo name ship_class
-rails g model Planet name
-rails g model Specie name classification
-rails g migration AddPlanetToUser planet:references
-rails g migration AddSpecieToUser specie:references
-rails g migration AddShips_InfoToShip ships_info:references
+# rails g migration RemoveCategoryFromShip category:string
+# rails g migration RemoveSpeciesFromUser species:string
+# rails g migration RemovePlanetFromUser planet:string
+# rails g model ShipsInfo name ship_class
+# rails g model Planet name
+# rails g model Specie name classification
+# rails g migration AddPlanetToUser planet:references
+# rails g migration AddSpecieToUser specie:references
+# rails g migration AddShips_InfoToShip ships_info:references
 
 # old :
 

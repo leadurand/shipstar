@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814164832) do
+ActiveRecord::Schema.define(version: 20170815085202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,21 +26,40 @@ ActiveRecord::Schema.define(version: 20170814164832) do
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
 
+  create_table "planets", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ships", force: :cascade do |t|
     t.string   "name"
-    t.string   "category"
     t.string   "address"
     t.integer  "price"
     t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "ships_info_id"
+    t.index ["ships_info_id"], name: "index_ships_on_ships_info_id", using: :btree
+    t.index ["user_id"], name: "index_ships_on_user_id", using: :btree
+  end
+
+  create_table "ships_infos", force: :cascade do |t|
+    t.string   "name"
+    t.string   "ship_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_ships_on_user_id", using: :btree
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string   "name"
+    t.string   "classification"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "species"
-    t.string   "planet"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -53,11 +72,18 @@ ActiveRecord::Schema.define(version: 20170814164832) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "planet_id"
+    t.integer  "specie_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["planet_id"], name: "index_users_on_planet_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["specie_id"], name: "index_users_on_specie_id", using: :btree
   end
 
   add_foreign_key "bookings", "ships"
   add_foreign_key "bookings", "users"
+  add_foreign_key "ships", "ships_infos"
   add_foreign_key "ships", "users"
+  add_foreign_key "users", "planets"
+  add_foreign_key "users", "species", column: "specie_id"
 end
