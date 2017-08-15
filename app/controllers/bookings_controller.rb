@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
 
   def create
     @ship = Ship.find(params[:ship_id])
-    @user = User.find(params[:ship_id])
+    @user = current_user
     @booking = @user.bookings.new(booking_params)
     @booking.ship = @ship
 
