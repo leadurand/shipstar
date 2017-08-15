@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  
+
   def create
     @booking = current_user.bookings.new(booking_params)
     @ship = Ship.find(params[:ship_id])
@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
   end
-  
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
