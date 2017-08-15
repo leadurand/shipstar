@@ -160,15 +160,15 @@ Booking.create(
 
 # modif de schema :
 
-# rails g migration RemoveCategoryFromShip category:string
-# rails g migration RemoveSpeciesFromUser species:string
-# rails g migration RemovePlanetFromUser planet:string
-# rails g model ShipsInfo name ship_class
-# rails g model Planet name
-# rails g model Specie name classification
-# rails g migration AddPlanetToUser planet:references
-# rails g migration AddSpecieToUser specie:references
-# rails g migration AddShips_InfoToShip ships_info:references
+rails g migration RemoveCategoryFromShip category:string
+rails g migration RemoveSpeciesFromUser species:string
+rails g migration RemovePlanetFromUser planet:string
+rails g model ShipsInfo name ship_class
+rails g model Planet name
+rails g model Specie name classification
+rails g migration AddPlanetToUser planet:references
+rails g migration AddSpecieToUser specie:references
+rails g migration AddShips_InfoToShip ships_info:references
 
 # old :
 
