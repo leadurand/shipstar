@@ -3,6 +3,7 @@
 		<% @ships.each do |ship| %>
 			<p><%= ship.name %></p>
 			<p><%= ship.address %></p>
+			<p><%= link_to "View details", ship_path(ship), class: "btn btn-primary" %></p>
 		<% end %>
 	</div>
 </div>
