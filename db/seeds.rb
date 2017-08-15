@@ -23,19 +23,34 @@ Booking.destroy_all
 Ship.destroy_all
 User.destroy_all
 Specie.destroy_all
+SpeciesClass.destroy_all
 Planet.destroy_all
-ShipsInfo.destroy_all
+ShipsModel.destroy_all
+ShipsClass.destroy_all
 
 # populate species table with API "name" and "classification"
 
+def fetch_db_species_classes(url)
+  url.each do |specie|
+    SpeciesClass.create(name: specie["classification"])
+  end
+end
+
 def fetch_db_species(url)
   url.each do |specie|
-    Specie.create(name: specie["name"], classification: specie["classification"])
+    species_class = SpeciesClass.find_by(name: specie["classification"])
+    if species_class.nil?
+      next
+    else
+      species_class_id = species_class.id
+      Specie.create(name: specie["name"], species_class_id: species_class_id)
+    end
   end
 end
 
 species = serialized(open("http://swapi.co/api/species/").read)
 while species["next"] != nil
+  fetch_db_species_classes(species["results"])
   fetch_db_species(species["results"])
   species = serialized(open(species["next"]).read)
 end
@@ -46,120 +61,120 @@ fetch_db_species(lastspe["results"])
 
 # populate planets table with API "name"
 
-def fetch_db_planets(url)
-  url.each do |planet|
-    Planet.create(name: planet["name"])
-  end
-end
-
-planets = serialized(open("http://swapi.co/api/planets/").read)
-while planets["next"] != nil
-  fetch_db_planets(planets["results"])
-  planets = serialized(open(planets["next"]).read)
-end
-
-lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
-fetch_db_planets(lastplan["results"])
-#trouver une solution pour faire une derniere boucle... loop do ?
-# loop do
-#   fetch_db_species(species["results"])
-#   species = serialized(open(species["next"]).read)
-#   break if species["next"].nil?
+# def fetch_db_planets(url)
+#   url.each do |planet|
+#     Planet.create(name: planet["name"])
+#   end
 # end
 
-# populate ships-infos table with API "model" and "starship_class"
+# planets = serialized(open("http://swapi.co/api/planets/").read)
+# while planets["next"] != nil
+#   fetch_db_planets(planets["results"])
+#   planets = serialized(open(planets["next"]).read)
+# end
 
-def fetch_db_shipsinfos(url)
-  url.each do |ships_info|
-    ShipsInfo.create(name: ships_info["model"], ship_class: ships_info["starship_class"])
-  end
-end
+# lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
+# fetch_db_planets(lastplan["results"])
+# #trouver une solution pour faire une derniere boucle... loop do ?
+# # loop do
+# #   fetch_db_species(species["results"])
+# #   species = serialized(open(species["next"]).read)
+# #   break if species["next"].nil?
+# # end
 
-starships = serialized(open("http://swapi.co/api/starships/").read)
-while starships["next"] != nil
-  fetch_db_shipsinfos(starships["results"])
-  starships = serialized(open(starships["next"]).read)
-end
+# # populate ships-infos table with API "model" and "starship_class"
 
-lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
-fetch_db_shipsinfos(lastship["results"])
+# def fetch_db_shipsinfos(url)
+#   url.each do |ships_info|
+#     ShipsInfo.create(name: ships_info["model"], ship_class: ships_info["starship_class"])
+#   end
+# end
 
-#Create 10 users and get goods planets and species from API and ids from table
+# starships = serialized(open("http://swapi.co/api/starships/").read)
+# while starships["next"] != nil
+#   fetch_db_shipsinfos(starships["results"])
+#   starships = serialized(open(starships["next"]).read)
+# end
 
-1.upto(10) do |n|
-  person = serialized(Swapi.get_person(n))
-  planet = serialized(open(person["homeworld"]).read)["name"]
-  p_id = Planet.find_by(name: planet).id
-  specie = serialized(open(person["species"].first).read)["name"]
-  s_id = Specie.find_by(name: specie).id
+# lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
+# fetch_db_shipsinfos(lastship["results"])
 
-  User.create!(
-    name: person["name"],
-    planet_id: p_id,
-    specie_id: s_id,
-    email: Faker::Internet.email,
-    password: '123456'
-  )
-end
+# #Create 10 users and get goods planets and species from API and ids from table
 
-# # A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
+# 1.upto(10) do |n|
+#   person = serialized(Swapi.get_person(n))
+#   planet = serialized(open(person["homeworld"]).read)["name"]
+#   p_id = Planet.find_by(name: planet).id
+#   specie = serialized(open(person["species"].first).read)["name"]
+#   s_id = Specie.find_by(name: specie).id
 
-Ship.create(
-  name: "Nasa",
-  address: "Cours Balguerie, Bordeaux",
-  price: 100,
-  ships_info_id: random(ShipsInfo),
-  user_id: random(User)
-)
+#   User.create!(
+#     name: person["name"],
+#     planet_id: p_id,
+#     specie_id: s_id,
+#     email: Faker::Internet.email,
+#     password: '123456'
+#   )
+# end
 
-Ship.create(
-  name: "Wagon",
-  address: "Rue Bert, Le Bouscat",
-  price: 800,
-  ships_info_id: random(ShipsInfo),
-  user_id: random(User)
-)
+# # # A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
 
-Ship.create(
-  name: "Titanic",
-  address: "4 avenue Thiers, Bordeaux",
-  price: 50,
-  ships_info_id: random(ShipsInfo),
-  user_id: random(User)
-)
+# Ship.create(
+#   name: "Nasa",
+#   address: "Cours Balguerie, Bordeaux",
+#   price: 100,
+#   ships_info_id: random(ShipsInfo),
+#   user_id: random(User)
+# )
 
-Ship.create(
-  name: "XR45",
-  address: "200 avenue Thiers, Bordeaux",
-  price: 50,
-  ships_info_id: random(ShipsInfo),
-  user_id: random(User)
-)
+# Ship.create(
+#   name: "Wagon",
+#   address: "Rue Bert, Le Bouscat",
+#   price: 800,
+#   ships_info_id: random(ShipsInfo),
+#   user_id: random(User)
+# )
 
-Booking.create(
-  start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
-  user_id: random(User),
-  ship_id: random(Ship)
-)
+# Ship.create(
+#   name: "Titanic",
+#   address: "4 avenue Thiers, Bordeaux",
+#   price: 50,
+#   ships_info_id: random(ShipsInfo),
+#   user_id: random(User)
+# )
 
-Booking.create(
-  start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
-  user_id: random(User),
-  ship_id: random(Ship)
-)
+# Ship.create(
+#   name: "XR45",
+#   address: "200 avenue Thiers, Bordeaux",
+#   price: 50,
+#   ships_info_id: random(ShipsInfo),
+#   user_id: random(User)
+# )
 
-Booking.create(
-  start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
-  user_id: random(User),
-  ship_id: random(Ship)
-)
+# Booking.create(
+#   start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: random(User),
+#   ship_id: random(Ship)
+# )
 
-Booking.create(
-  start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
-  end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
-  user_id: random(User),
-  ship_id: random(Ship)
-)
+# Booking.create(
+#   start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: random(User),
+#   ship_id: random(Ship)
+# )
+
+# Booking.create(
+#   start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: random(User),
+#   ship_id: random(Ship)
+# )
+
+# Booking.create(
+#   start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
+#   end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
+#   user_id: random(User),
+#   ship_id: random(Ship)
+# )
