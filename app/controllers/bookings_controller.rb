@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
   end
 
   def index
-    # => PENDING LOGIN FEATURE
     @bookings = current_user.bookings
   end
 
