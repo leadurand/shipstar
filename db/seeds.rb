@@ -19,12 +19,12 @@ def random(table)
   table.order("RANDOM()").first.id
 end
 
+Booking.destroy_all
+Ship.destroy_all
 User.destroy_all
 Specie.destroy_all
 Planet.destroy_all
 ShipsInfo.destroy_all
-Ship.destroy_all
-Booking.destroy_all
 
 # populate species table with API "name" and "classification"
 
@@ -40,8 +40,9 @@ while species["next"] != nil
   species = serialized(open(species["next"]).read)
 end
 
-  lastspe = serialized(open("http://swapi.co/api/species/?page=4").read)
-  fetch_db_species(lastspe["results"])
+lastspe = serialized(open("http://swapi.co/api/species/?page=4").read)
+fetch_db_species(lastspe["results"])
+
 
 # populate planets table with API "name"
 
@@ -57,9 +58,14 @@ while planets["next"] != nil
   planets = serialized(open(planets["next"]).read)
 end
 
-  lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
-  fetch_db_planets(lastplan["results"])
+lastplan = serialized(open("http://swapi.co/api/planets/?page=7").read)
+fetch_db_planets(lastplan["results"])
 #trouver une solution pour faire une derniere boucle... loop do ?
+# loop do
+#   fetch_db_species(species["results"])
+#   species = serialized(open(species["next"]).read)
+#   break if species["next"].nil?
+# end
 
 # populate ships-infos table with API "model" and "starship_class"
 
@@ -75,8 +81,8 @@ while starships["next"] != nil
   starships = serialized(open(starships["next"]).read)
 end
 
-  lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
-  fetch_db_shipsinfos(lastship["results"])
+lastship = serialized(open("http://swapi.co/api/starships/?page=4").read)
+fetch_db_shipsinfos(lastship["results"])
 
 #Create 10 users and get goods planets and species from API and ids from table
 
@@ -98,86 +104,62 @@ end
 
 # # A la main pour que l'equipe puisse tester, a refacto... en suivant pour plus propre
 
-randuser_id = random(User)
-randshipsinfo_id = random(ShipsInfo)
-
 Ship.create(
   name: "Nasa",
   address: "Cours Balguerie, Bordeaux",
   price: 100,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
+  ships_info_id: random(ShipsInfo),
+  user_id: random(User)
 )
 
 Ship.create(
   name: "Wagon",
   address: "Rue Bert, Le Bouscat",
   price: 800,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
+  ships_info_id: random(ShipsInfo),
+  user_id: random(User)
 )
 
 Ship.create(
   name: "Titanic",
   address: "4 avenue Thiers, Bordeaux",
   price: 50,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
+  ships_info_id: random(ShipsInfo),
+  user_id: random(User)
 )
 
 Ship.create(
   name: "XR45",
   address: "200 avenue Thiers, Bordeaux",
   price: 50,
-  ships_info_id: randshipsinfo_id,
-  user_id: randuser_id
+  ships_info_id: random(ShipsInfo),
+  user_id: random(User)
 )
-
-randship_id = random(Ship)
 
 Booking.create(
   start_at: "Mon, 14 Aug 2017 21:20:44 UTC +00:00",
   end_at: "Mon, 16 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
+  user_id: random(User),
+  ship_id: random(Ship)
 )
 
 Booking.create(
   start_at: "Mon, 11 Aug 2017 21:20:44 UTC +00:00",
   end_at: "Mon, 19 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
+  user_id: random(User),
+  ship_id: random(Ship)
 )
 
 Booking.create(
   start_at: "Mon, 10 Aug 2017 21:20:44 UTC +00:00",
   end_at: "Mon, 25 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
+  user_id: random(User),
+  ship_id: random(Ship)
 )
 
 Booking.create(
   start_at: "Mon, 17 Aug 2017 21:20:44 UTC +00:00",
   end_at: "Mon, 28 Aug 2017 21:20:44 UTC +00:00",
-  user_id: randuser_id,
-  ship_id: randship_id
+  user_id: random(User),
+  ship_id: random(Ship)
 )
-
-
-# old :
-
-# populate planets table with API "name"
-
-# planets = serialized(Swapi.get_all("planets"))
-
-# planets["results"].each do |planet|
-#   Planet.create(name: planet["name"])
-# end
-
-# populate ships-infos table with API "model" and "starship_class"
-
-# ships_infos = serialized(Swapi.get_all("starships"))
-
-# ships_infos["results"].each do |ships_info|
-#   ShipsInfo.create(name: ships_info["model"], ship_class: ships_info["starship_class"])
-# end

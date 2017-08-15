@@ -1,10 +1,11 @@
 <%= link_to 'Back to your bookings', bookings_path %>
 <h1> Your booking </h1>
-<h2> Ship: <%= "#{@booking.ship.name} (#{@booking.ship.category})" %> </h2>
-<h3> Owner: <%= link_to @booking.user.name, '#' %> from <%= @booking.user.planet %> </h3>
+<h2> Ship: <%= "#{@booking.ship.name} (#{@booking.ship.ships_info.ship_class
+})" %> </h2>
+<h3> Owner: <%= link_to @booking.ship.user.name, '#' %> from <%= @booking.ship.user.planet.name %> </h3>
 <h3> Location of your ship: <%= @booking.ship.address %></h3>
 <h3>Price: <%= @booking.ship.price %> credits</h3>
 
-<%= link_to "Delete my booking", bookings_path,
+<%= link_to "Delete my booking", booking_path(@booking),
       method: :delete,
       data: { confirm: "Sure, are you?" } %>
