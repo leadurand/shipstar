@@ -1,43 +1,33 @@
 <h1>User Informations</h1>
 
 <h2>
-  <% if current_user.name.nil? %>
-    <%= current_user.first_name %> <%= current_user.last_name %>
-    <% else %> <%= current_user.name %>
+  <% if @user.name.nil? %>
+    <%= @user.first_name %> <%= @user.last_name %>
+    <% else %> <%= @user.name %>
   <% end %>
 </h2>
 
 <!-- Implement ships card here -->
-<li>
-  <% current_user.ships.each do |ship| %>
-    <%= ship.name %>, <%= ship.price %> credits by day.
+
+<h3>My ships</h3>
+  <% @user.ships.each do |ship| %>
+    <li><strong> <%= ship.name %>, <%= ship.price %> credits by day.</strong></li>
+    <p>
+    <% ship.bookings.reverse.each do |booking| %>
+      <strong>From</strong> <%= booking.start_at %>,
+      <strong>To</strong> <%= booking.end_at %>
+      </p>
+    <% end %>
   <% end %>
-</li>
 
 <br>
 
-<h4>Bookings of my ships :</h4>
-
-
-<li>
-  <% current_user.bookings.each do |booking| %>
-
-    <strong>From</strong> <%= booking.start_at %>,
-    <strong>To</strong> <%= booking.end_at %>
-
-  <% end %>
-</li>
-
 <h4>Booked ships :</h4>
 
-  <% current_user.ships.bookings.each do |booking| %>
-
-    <strong>From</strong> <%= booking.start_at %>,
-    <strong>To</strong> <%= booking.end_at %>
-
+  <% @user.bookings.reverse.each do |booking| %>
+    <li> <%= booking.ship.name  %> </li>
+    <p><strong>From</strong> <%= booking.start_at %>,
+    <strong>To</strong> <%= booking.end_at %></p>
   <% end %>
 
-
-
-<p>For debugging purpose, user_id :  <%= current_user.id %></p>
 

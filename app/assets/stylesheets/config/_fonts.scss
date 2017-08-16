@@ -14,3 +14,16 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+
+/* @font-face kit by Fonts2u (http://www.fonts2u.com) */
+@font-face {
+  font-family:"STARWARS";
+  src: font-url("STARWARS.eot") format("eot");
+  src: font-url("STARWARS.woff") format("woff"),
+       font-url("STARWARS.ttf") format("truetype"),
+       font-url("STARWARS.svg#STARWARS") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+$my-font: "STARWARS";
