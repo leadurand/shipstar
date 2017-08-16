@@ -2,6 +2,6 @@
 
 <ul>
   <% @bookings.reverse.each_with_index do |booking| %>
-  <li> <%= "#{booking.start_at.to_time.strftime('%B %e')} - #{booking.end_at.to_time.strftime('%B %e')}| #{booking.ship.name}, rented by #{booking.ship.user.name}" %> <%= link_to "[See booking]", booking_path(booking) %> </li>
+  <li> <%= "#{booking.start_at.to_time.strftime('%B %e')} - #{booking.end_at.to_time.strftime('%B %e')}| #{booking.ship.ships_model.ships_class.name.capitalize}, rented by #{booking.ship.user.name}" %> <%= link_to "[See booking]", booking_path(booking) %> </li>
   <% end %>
 </ul>

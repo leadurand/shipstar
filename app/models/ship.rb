@@ -6,4 +6,6 @@ class Ship < ApplicationRecord
   # validates :category, inclusion: { in: ['Patrol craft', 'Assault Starfighter', 'Deep Space Mobile Battlestation', 'Starfighter', 'landingcraft', 'star dreadnought', 'Armed government transport', 'Escort Ship'], allow_nil: false }
   validates :address, presence: true
   validates :price, presence: true
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
