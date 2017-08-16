@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170816103842) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "ships_model_id"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["ships_model_id"], name: "index_ships_on_ships_model_id", using: :btree
     t.index ["user_id"], name: "index_ships_on_user_id", using: :btree
   end

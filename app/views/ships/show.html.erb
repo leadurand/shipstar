@@ -3,9 +3,10 @@
 
   <div>
     <h2><%= @ship.name %></h2>
-    <p>Address : <%= @ship.address %></p>
-    <p>Model : <%= @ship.ships_info.name %></p>
-    <p>Price : <%= @ship.price %> $︎</p>
+    <p><i class="fa fa-globe" aria-hidden="true"> : </i><%= @ship.address %></p>
+    <p><i class="fa fa-rocket" aria-hidden="true"></i> : <%= @ship.ships_model.name %></p>
+    <p><i class="fa fa-cogs" aria-hidden="true"> : </i><%= @ship.ships_model.ships_class.name %></p>
+    <p><i class="fa fa-credit-card-alt" aria-hidden="true"></i> : <%= @ship.price %> $︎</p>
   </div>
 
   <div>

@@ -14,7 +14,7 @@ gem 'faker'
 gem 'swapi'
 gem 'link_thumbnailer'
 # gem 'random-location'
-# gem 'geocoder'
+gem 'geocoder'
 
 # front-end
 gem 'autoprefixer-rails'
@@ -39,7 +39,7 @@ group :development, :test do
   gem 'swapi'
   gem 'link_thumbnailer'
   # gem 'random-location'
-  # gem 'geocoder'
+  gem 'geocoder'
 end
 
 
