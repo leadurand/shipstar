@@ -5,14 +5,19 @@ class ShipsController < ApplicationController
 	end
 
 	def index
-		@ships = if params[:city]
+		@ships = if params[:country]
 			# get the query string from the params
-			@address = params[:city]
-			@ships_info = params[:category]
+			@address = params[:country]
+			@ships_class_id = params[:class]
 			# access the ship_class from the ShipsInfo model
-			@ship_class = ShipsInfo.find(@ships_info).ship_class
-			# query the database
-			@ships = Ship.joins(:ships_info).where("address LIKE ?", "%#{@address}%").where("ships_infos.ship_class LIKE ?", "%#{@ship_class}%")
+			@ships_class_name = ShipsClass.find(@ships_class_id.to_i).name
+			# query the database !!! TO FIX
+			@all_ships = Ship.where(address: @address)
+			@ships = @all_ships.select do |ship|
+				ship.ships_model.ships_class.name == @ships_class_name
+			end
+			# @ships = Ship.joins(ships_model: :ships_class).where(address: @address).where('ships_class.name' => @ships_class_name)
+			# @ships = Ship.joins(:ships_model, :ships_class).where("address LIKE ?", "%#{@address}%").where("ships_classes.name LIKE ?", "%#{@ships_class_name}%")
 		else
 			Ship.all
 		end
@@ -21,6 +26,6 @@ class ShipsController < ApplicationController
 	private
 
 	def ships_params
-		params.require(:ship).permit(:name, :address, :price, :ship_info_id, :user_id)
+		params.require(:ship).permit(:name, :address, :price, :ship_model_id, :user_id)
 	end
 end
