@@ -6,17 +6,27 @@
   </div>
 </div>
 
-
 <div id="map" style="width: 100%; height: 600px;"></div>
 
-<div class="wrapper">
-	<div class="container">
-		<% @ships.each do |ship| %>
-			<p><%= ship.user.name %></p>
-			<p><%= ship.address %></p>
-		<% end %>
-	</div>
+<div class="container">
+  <div class="row">
+    <% @ships.each do |ship| %>
+      <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_tag ship.ships_model.image %>);">
+              <div class="card-category"><%= ship.address %></div>
+              <div class="card-description">
+                <h2><%= ship.ships_model.name %></h2>
+                <p><%= ship.price %> €</p>
+              </div>
+              <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+              <a class="card-link" href="#" ></a>
+          </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
