@@ -2,7 +2,13 @@
   <div class="row">
     <% @ships.each do |ship| %>
       <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg');">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
+            <% if ship.ships_model.image.nil? %>
+            <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
+            <% else %>
+            <%= ship.ships_model.image %>
+            <% end %>
+          );">
               <div class="card-category"><%= ship.address %></div>
               <div class="card-description">
                 <h2><%= ship.ships_model.name %></h2>
