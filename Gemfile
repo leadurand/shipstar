@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
 
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+
 # back-end
 gem 'figaro'
 gem 'omniauth-facebook'
@@ -14,6 +18,8 @@ gem 'faker'
 gem 'swapi'
 # gem 'random-location'
 gem 'geocoder'
+gem "coffee-rails"
+gem "gmaps4rails"
 
 # front-end
 gem 'autoprefixer-rails'
@@ -38,6 +44,8 @@ group :development, :test do
   gem 'swapi'
   # gem 'random-location'
   gem 'geocoder'
+  gem "coffee-rails"
+  gem "gmaps4rails"
 end
 
 

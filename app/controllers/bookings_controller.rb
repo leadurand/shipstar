@@ -21,6 +21,8 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @ship = @booking.ship
+    @booking_coordinates = { lat: @ship.latitude, lng: @ship.longitude }
   end
 
   def destroy
