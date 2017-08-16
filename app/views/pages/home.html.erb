@@ -22,6 +22,7 @@
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
+        zoom: 1,
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
