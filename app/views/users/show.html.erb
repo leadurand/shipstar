@@ -12,6 +12,7 @@
 <h3>My ships</h3>
   <% @user.ships.each do |ship| %>
     <li><strong> <%= ship.name %>, <%= ship.price %> credits by day.</strong></li>
+      <%= image_tag ship.ships_models.image %>
     <p>
     <% ship.bookings.reverse.each do |booking| %>
       <strong>From</strong> <%= booking.start_at %>,
