@@ -1,12 +1,6 @@
 <div class="wrapper">
 	<div class="container">
-		<h1>Find the best starship</h1>
-		<h2>Cheaper, nearer, more convenient</h2>
-		<%= simple_form_for(:index, url: ships_path, method: :get)  do |f| %>
-		  <%= f.input_field :address, name: "city", label: false, placeholder: 'Your city'%>
-		  <%= f.input_field :ships_info_id, name: "category", label: false, collection: ShipsInfo.all %>
-		  <%= f.submit "Search a starship", name: nil, class: "btn btn-primary" %>
-		<% end %>
+		<%= render 'shared/search_form' %>
 	</div>
 </div>
 <div class="wrapper">
