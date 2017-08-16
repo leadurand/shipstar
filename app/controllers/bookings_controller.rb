@@ -21,8 +21,13 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    @ship = @booking.ship
-    @booking_coordinates = { lat: @ship.latitude, lng: @ship.longitude }
+    @ships = []
+    @ships << @booking.ship
+    @hash = Gmaps4rails.build_markers(@ships) do |ship, marker|
+      marker.lat ship.latitude
+      marker.lng ship.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+    end
   end
 
   def destroy
