@@ -13,7 +13,7 @@ gem 'devise'
 gem 'faker'
 gem 'swapi'
 # gem 'random-location'
-# gem 'geocoder'
+gem 'geocoder'
 
 # front-end
 gem 'autoprefixer-rails'
@@ -37,7 +37,7 @@ group :development, :test do
   gem 'faker'
   gem 'swapi'
   # gem 'random-location'
-  # gem 'geocoder'
+  gem 'geocoder'
 end
 
 
