@@ -3,7 +3,7 @@ class ShipsController < ApplicationController
 	  @ship = Ship.find(params[:id])
 	  @booking = Booking.new
 	end
-	
+
 	def index
 		@ships = if params[:city]
 			# get the query string from the params
