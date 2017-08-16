@@ -6,31 +6,50 @@
   </div>
 </div>
 
-<div id="map" style="width: 100%; height: 600px;"></div>
-
 <div class="container">
   <div class="row">
-    <% @ships.each do |ship| %>
-      <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
-            <% if ship.ships_model.image.nil? %>
-            <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
-            <% else %>
-            <%= ship.ships_model.image %>
-            <% end %>
-      );">
-              <div class="card-category"><%= ship.address %></div>
+
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://vignette3.wikia.nocookie.net/starwars/images/6/6e/Tranquility2.png/revision/latest?cb=20120922034412');">
+          <div class="card-category">Bulgaria</div>
+          <div class="card-description">
+            <h2>Republic Assault Ship </h2>
+            <p>468 4456 ℥</p>
+          </div>
+          <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+          <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://www.jeditemplearchives.com/galleries/2014/Review_AnakinsJediStarfighterROTS/Review_AnakinsJediStarfighterROTS_still.jpg');">
+              <div class="card-category">Cook Island</div>
               <div class="card-description">
-                <h2><%= ship.ships_model.name %></h2>
-                <p><%= ship.price %> €</p>
+                <h2>Jedi Starfighter </h2>
+                <p>84 440 ℥</p>
               </div>
               <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
               <a class="card-link" href="#" ></a>
           </div>
-      </div>
-    <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg');">
+              <div class="card-category">Morocco</div>
+              <div class="card-description">
+                <h2>Millennium Falcon </h2>
+                <p>35 450 ℥</p>
+              </div>
+              <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+              <a class="card-link" href="#" ></a>
+          </div>
+    </div>
   </div>
 </div>
+
+<div id="map" style="width: 100%; height: 600px;"></div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
