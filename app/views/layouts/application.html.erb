@@ -7,13 +7,25 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <style type="text/css">
+      body { margin: 0; }
+      #map {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= javascript_include_tag 'application' %>
     <%= render 'shared/footer' %>
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield(:after_js) %>
   </body>
 </html>
