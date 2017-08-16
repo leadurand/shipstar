@@ -1,21 +1,22 @@
-<div class="container text-center">
-  <h1>Details</h1>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
+  <div class="container text-center">
 
-  <div>
-    <h2><%= @ship.name %></h2>
-    <p><i class="fa fa-globe" aria-hidden="true"> : </i><%= @ship.address %></p>
-    <p><i class="fa fa-rocket" aria-hidden="true"></i> : <%= @ship.ships_model.name %></p>
-    <p><i class="fa fa-cogs" aria-hidden="true"> : </i><%= @ship.ships_model.ships_class.name %></p>
-    <p><i class="fa fa-credit-card-alt" aria-hidden="true"></i> : <%= @ship.price %> $︎</p>
+    <div>
+      <h2 class="font-starwars"><%= @ship.name %></h2>
+      <p class="font-starwars"><i class="fa fa-globe" aria-hidden="true"></i> : <%= @ship.address %></p>
+      <p class="font-starwars"><i class="fa fa-rocket" aria-hidden="true"></i> : <%= @ship.ships_model.name %></p>
+      <p class="font-starwars"><i class="fa fa-cogs" aria-hidden="true"></i> : <%= @ship.ships_model.ships_class.name %></p>
+      <p class="font-starwars"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> : <%= @ship.price %> Cr</p>
+    </div>
+
+    <div>
+      <%= render 'bookings/form' %>
+    </div>
+
+    <div>
+      <%= link_to 'back to research', ships_path%>
+    </div>
+
+
   </div>
-
-  <div>
-    <%= render 'bookings/form' %>
-  </div>
-
-  <div>
-    <%= link_to 'back to research', ships_path%>
-  </div>
-
-
 </div>

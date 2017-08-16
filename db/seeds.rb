@@ -141,15 +141,6 @@ def fetch_db_ships_models(url)
   end
 end
 
-modelsimages = ["http://fractalsponge.net/images/gallery/slides/Executor.jpg", "https://vignette2.wikia.nocookie.net/firststrikemod/images/f/fd/FSMOD_Sentinel.JPG/revision/latest?cb=20110327181005", "https://lumiere-a.akamaihd.net/v1/images/Death-Star-II_b5760154.jpeg?region=0%2C0%2C2160%2C1215&width=768", "http://www.gadgetreview.com/wp-content/uploads/2015/05/millennium-falcon.jpg", "https://lumiere-a.akamaihd.net/v1/images/Y-Wing-Fighter_0e78c9ae.jpeg?region=0%2C0%2C1536%2C864&width=768", "https://static1.squarespace.com/static/566de2b3d8af104b6800e718/t/587b18d79de4bbb43fed8397/1484462330394/Untitled-5.jpg?format=1500w", "http://vignette4.wikia.nocookie.net/starwars/images/d/d1/TIE_Advanced.jpg/revision/latest?cb=20071123095737&path-prefix=nl", "https://cdn.instructables.com/FMT/8V4P/HFSHT69C/FMT8V4PHFSHT69C.MEDIUM.jpg", "https://spikeybits.com/wp-content/uploads/2016/05/lambda-fly1-xwing.jpg", "https://vignette2.wikia.nocookie.net/starwars/images/5/50/NBfrigate.JPG/revision/latest?cb=20061215024715", "https://vignette2.wikia.nocookie.net/starwars/images/9/94/MCLiberty.jpg/revision/latest?cb=20070104001953", "https://vignette2.wikia.nocookie.net/starwars/images/a/aa/Awing-sag.jpg/revision/latest?cb=20120629194348", "https://vignette4.wikia.nocookie.net/starwars/images/9/95/B-wing_infly.jpg/revision/latest?cb=20051223162859", "http://vignette2.wikia.nocookie.net/swtor/images/b/bd/Republic_Hammerhead_Cruiser_1.jpg/revision/latest?cb=20110405145539", "https://vignette3.wikia.nocookie.net/disney-infinity/images/7/7e/N1_fighter.jpg/revision/latest?cb=20150509034743"]
-
-  n = 0
-ShipsModel.all.each do |model|
-  model.image = modelsimages[n]
-  model.save
-  n +=1
-end
-
 
 # Why don't we use the gem -> gem 'tatooine' or others?
 starships = serialized(open("http://swapi.co/api/starships/").read)
@@ -188,6 +179,14 @@ puts "[BOOKINGS in #{(Time.now - time).round} sec] Let's do some business!"
   )
 end
 
+modelsimages = ["http://fractalsponge.net/images/gallery/slides/Executor.jpg", "https://vignette2.wikia.nocookie.net/firststrikemod/images/f/fd/FSMOD_Sentinel.JPG/revision/latest?cb=20110327181005", "https://lumiere-a.akamaihd.net/v1/images/Death-Star-II_b5760154.jpeg?region=0%2C0%2C2160%2C1215&width=768", "http://www.gadgetreview.com/wp-content/uploads/2015/05/millennium-falcon.jpg", "https://lumiere-a.akamaihd.net/v1/images/Y-Wing-Fighter_0e78c9ae.jpeg?region=0%2C0%2C1536%2C864&width=768", "https://static1.squarespace.com/static/566de2b3d8af104b6800e718/t/587b18d79de4bbb43fed8397/1484462330394/Untitled-5.jpg?format=1500w", "http://vignette4.wikia.nocookie.net/starwars/images/d/d1/TIE_Advanced.jpg/revision/latest?cb=20071123095737&path-prefix=nl", "https://cdn.instructables.com/FMT/8V4P/HFSHT69C/FMT8V4PHFSHT69C.MEDIUM.jpg", "https://spikeybits.com/wp-content/uploads/2016/05/lambda-fly1-xwing.jpg", "https://vignette2.wikia.nocookie.net/starwars/images/5/50/NBfrigate.JPG/revision/latest?cb=20061215024715", "https://vignette2.wikia.nocookie.net/starwars/images/9/94/MCLiberty.jpg/revision/latest?cb=20070104001953", "https://vignette2.wikia.nocookie.net/starwars/images/a/aa/Awing-sag.jpg/revision/latest?cb=20120629194348", "https://vignette4.wikia.nocookie.net/starwars/images/9/95/B-wing_infly.jpg/revision/latest?cb=20051223162859", "http://vignette2.wikia.nocookie.net/swtor/images/b/bd/Republic_Hammerhead_Cruiser_1.jpg/revision/latest?cb=20110405145539", "https://vignette3.wikia.nocookie.net/disney-infinity/images/7/7e/N1_fighter.jpg/revision/latest?cb=20150509034743"]
+
+  n = 0
+ShipsModel.all.each do |model|
+  model.image = modelsimages[n]
+  model.save
+  n +=1
+end
 
 
 
