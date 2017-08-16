@@ -1,14 +1,10 @@
 <div class="wrapper">
-	<div class="container">
+	<div class="container text-center">
 		<%= render 'shared/search_form' %>
 	</div>
 </div>
-<div class="wrapper">
-	<div class="container">
-		<% @ships.each do |ship| %>
-			<p><%= ship.name %></p>
-			<p><%= ship.address %></p>
-			<p><%= link_to "View details", ship_path(ship), class: "btn btn-primary" %></p>
-		<% end %>
-	</div>
-</div>
+
+<%= render "shared/card" %>
+
+
+
