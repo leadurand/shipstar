@@ -14,7 +14,7 @@
                 <h2><%= ship.ships_model.name %></h2>
               </div>
               <div class="card-price">
-                <p><%= (ship.price *  0.05).round %></b> ℥/day</p>
+                <p><%= ship.daily_rent_price %></b> ℥/day</p>
               </div>
               <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
               <%= link_to "", ship_path(ship), class: "card-link" %>

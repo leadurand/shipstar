@@ -18,4 +18,13 @@ class Booking < ApplicationRecord
       errors.add(:end_at, "End date should be greater than Start date!")
     end
   end
+  
+  def length
+    (self.end_at - self.start_at) / 86400
+  end
+
+  def price
+    (self.ship.daily_rent_price * self.length).round
+  end
+
 end
