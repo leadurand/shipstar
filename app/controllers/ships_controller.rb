@@ -6,8 +6,8 @@ class ShipsController < ApplicationController
 
 	def index
 
-    @address = params[:country]
-    @class = params[:class]
+    @address = params[:index][:address] unless params[:index].nil?
+    @class = params[:index][:ships_class] unless params[:index].nil?
     @ships = Ship.all
 
     if @class.blank? && @address.blank?
@@ -17,14 +17,17 @@ class ShipsController < ApplicationController
           ship.ships_model.ships_class.id == @class.to_i
         end
       elsif @class.blank? && @address != ""
-        @ships = Ship.where('lower(address) = ?', @address.downcase)
+        @ships = Ship.where('lower(address) LIKE ?', "%#{@address.downcase}%")
       elsif @class != "" && @address != ""
-        @all_ships = Ship.where('lower(address) = ?', @address.downcase)
+        @all_ships = Ship.where('lower(address) LIKE ?', "%#{@address.downcase}%")
         @ships = @all_ships.select do |ship|
           ship.ships_model.ships_class.id == @class.to_i
         end
     end
 
+    if @ships == []
+      flash.now[:search_error] = "Sorry, no matches..."
+    end
 
   end
 
