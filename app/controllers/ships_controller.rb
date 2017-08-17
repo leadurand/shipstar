@@ -6,8 +6,8 @@ class ShipsController < ApplicationController
 
 	def index
 
-    @address = params[:country]
-    @class = params[:class]
+    @address = params[:index][:address] unless params[:index].nil?
+    @class = params[:index][:ships_class] unless params[:index].nil?
     @ships = Ship.all
 
     if @class.blank? && @address.blank?
@@ -26,7 +26,7 @@ class ShipsController < ApplicationController
     end
 
     if @ships == []
-      flash[:search_error] = "Sorry, no matches..."
+      flash.now[:search_error] = "Sorry, no matches..."
     end
 
   end

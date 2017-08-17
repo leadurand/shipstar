@@ -7,3 +7,21 @@
   </div>
   <%= f.submit "Let's fly away", name: nil, class: "btn btn-primary" %>
 <% end %>
+
+
+
+<% content_for :after_js do %>
+  <script>
+     $(document).ready(function() {
+            $(".coco").on('click', function(e) {
+
+                if ($(".alert-search").is(":visible")) {
+                  $(".alert-search").hide();
+                  console.log(("ok"))
+                  $(".coco").submit();
+                }
+
+            });
+    });
+  </script>
+<% end %>
