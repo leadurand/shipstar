@@ -1,5 +1,12 @@
-<%= simple_form_for(:index, url: ships_path, method: :get)  do |f| %>
-  <%= f.input_field :address, name: "country", label: false, placeholder: 'Your country'%>
-  <%= f.input_field :ships_model_id, name: "class", label: false, collection: ShipsClass.all %>
-  <%= f.submit "Search a starship", name: nil, class: "btn btn-primary" %>
+
+<%= simple_form_for(:index, url: ships_path, method: :get, html: { class: 'coco' }) do |f| %>
+  <div class="coco-fil1">
+    <%= f.input :address, name: "country", label: false, placeholder: 'Your planet' %>
+  </div>
+  <div class="coco-fil2">
+  <%= f.input :ships_model_id, name: "class", placeholder: "Spaceship' class", label: false, collection: ShipsClass.all %>
+  </div>
+
+  <%= f.submit "Let's fly away", name: nil, class: "btn btn-primary" %>
+
 <% end %>
