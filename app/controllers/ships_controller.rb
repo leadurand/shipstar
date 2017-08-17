@@ -6,38 +6,27 @@ class ShipsController < ApplicationController
 
 	def index
 
-    # @ships = Ship.all
-    # # if i have this criteria
-    #   @ships = @ships.where(criteria: criteria)
-    # # end
-
-    # # if i have that criteria
-    #   @ships = @ships.where(criteria2: "blabla")
-    # # end
-
     @address = params[:country]
     @class = params[:class]
     @ships = Ship.all
 
-    # unless @address.nil? || @class.nil?
-    #   @ships = Ship.where(address: @address.capitalize)
-
-
-    # end
-
-    unless @class.nil?
-      @ships = Ship.all.select do |ship|
-        ship.ships_model.ships_class.id == @class.to_i
-      end
+    if @class.blank? && @address.blank?
       @ships
+      elsif @class != "" && @address.blank?
+        @ships = Ship.all.select do |ship|
+          ship.ships_model.ships_class.id == @class.to_i
+        end
+      elsif @class.blank? && @address != ""
+        @ships = Ship.where('lower(address) = ?', @address.downcase)
+      elsif @class != "" && @address != ""
+        @all_ships = Ship.where('lower(address) = ?', @address.downcase)
+        @ships = @all_ships.select do |ship|
+          ship.ships_model.ships_class.id == @class.to_i
+        end
     end
 
 
-
   end
-
-
-
 
 	# 	@ships = if params[:country]
 	# 		# get the query string from the params
