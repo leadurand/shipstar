@@ -6,6 +6,9 @@
   color: white;
   position: relative;
   margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .card-user {
   position: absolute;
@@ -21,19 +24,15 @@
   font-size: 15px;
   text-transform: uppercase;
 }
+
 .card-description {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  h2 {
+    margin: 0;
+    font-size: 24px;
+  }
 }
-.card-description h2 {
-  font-size: 24px;
-}
-.card-description p {
-  font-size: 14px;
-  opacity: 0.7;
-  font-weight: lighter;
-}
+
 .card-link {
   position: absolute;
   top: 0;
@@ -46,4 +45,11 @@
 }
 .card-link:hover {
   opacity: 0.1;
+}
+
+.card-price {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 15px;
 }
