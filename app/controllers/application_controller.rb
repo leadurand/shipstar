@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_action :store_current_location, unless: :devise_controller?
 
+  add_flash_types :search_error
+
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb

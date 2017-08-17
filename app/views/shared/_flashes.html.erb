@@ -10,3 +10,14 @@
     <%= alert %>
   </div>
 <% end %>
+<% if search_error %>
+  <div class="alert alert-success alert-dismissible" role="alert" style="color:black">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <strong><%= search_error %></strong>
+     <br>
+     <br>
+     <h5>How about looking some of our most popular ships instead?</h5>
+  </div>
+  <% @ships = Ship.all.last(3) %>
+  <%= render "shared/card" %>
+<% end %>

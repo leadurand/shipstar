@@ -25,6 +25,9 @@ class ShipsController < ApplicationController
         end
     end
 
+    if @ships == []
+      flash[:search_error] = "Sorry, no matches..."
+    end
 
   end
 
