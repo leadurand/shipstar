@@ -1,3 +1,23 @@
-.simple_form {
+.coco {
   color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coco-fil1 {
+  flex: 0 0 50%;
+}
+
+.coco-fil2 {
+  flex: 0 0 30%;
+}
+
+.coco .form-group {
+  margin: 0;
+}
+
+// margin top : only applied for index page for spacing
+.margin-top {
+  margin-top: 20px;
 }
