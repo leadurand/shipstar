@@ -17,9 +17,9 @@ class ShipsController < ApplicationController
           ship.ships_model.ships_class.id == @class.to_i
         end
       elsif @class.blank? && @address != ""
-        @ships = Ship.where('lower(address) = ?', @address.downcase)
+        @ships = Ship.where('lower(address) LIKE ?', "%#{@address.downcase}%")
       elsif @class != "" && @address != ""
-        @all_ships = Ship.where('lower(address) = ?', @address.downcase)
+        @all_ships = Ship.where('lower(address) LIKE ?', "%#{@address.downcase}%")
         @ships = @all_ships.select do |ship|
           ship.ships_model.ships_class.id == @class.to_i
         end
