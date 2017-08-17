@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
   def home
   	@ship = Ship.new
-  	@ships = Ship.all
-    @hash = Gmaps4rails.build_markers(@ships) do |ship, marker|
+  	@ships = Ship.all.last(3)
+    @ships_all = Ship.all
+    @hash = Gmaps4rails.build_markers(@ships_all) do |ship, marker|
          marker.lat ship.latitude
          marker.lng ship.longitude
          marker.picture({
