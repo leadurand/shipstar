@@ -125,13 +125,17 @@ puts "[SHIPS in #{(Time.now - time).round} sec] Designing the best vehicules for
 
 def fetch_db_ships_classes(url)
   url.each do |ships_class|
-    ShipsClass.create(name: ships_class["starship_class"])
+    if ShipsClass.find_by(name: ships_class["starship_class"].capitalize).present? == true
+      next
+    else
+      ShipsClass.create(name: ships_class["starship_class"].capitalize)
+    end
   end
 end
 
 def fetch_db_ships_models(url)
   url.each do |ships_model|
-    ships_class = ShipsClass.find_by(name: ships_model["starship_class"])
+    ships_class = ShipsClass.find_by(name: ships_model["starship_class"].capitalize)
     if ships_class.nil?
       next
     else
