@@ -8,4 +8,8 @@ class Ship < ApplicationRecord
   validates :price, presence: true
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  def daily_rent_price
+    (self.price * 0.05).round
+  end
 end
