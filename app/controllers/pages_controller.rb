@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-  	@ship = Ship.new
+  	@bookings = Booking.all
+    @ship = Ship.new
   	@ships = Ship.all.last(3)
     @ships_all = Ship.all
     @hash = Gmaps4rails.build_markers(@ships_all) do |ship, marker|

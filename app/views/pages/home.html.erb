@@ -6,10 +6,19 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container ships-show">
+  <p class="ships-show-title">1 million users and over 40,000 private ships for rent on earth</p>
   <div class="row">
     <%= render "shared/card" %>
  </div>
+</div>
+<div class="container reviews-show">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h3><%= @bookings.find(160).rating %></h3>
+      <p><%= @bookings.find(160).content %></p>
+    </div>
+  </div>
 </div>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
