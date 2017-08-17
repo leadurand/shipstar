@@ -7,7 +7,7 @@
     })" %> </h2>
     <h3 class="font-starwars"> Owner: <%= link_to @booking.ship.user.name, '#' %> from <%= @booking.ship.user.planet.name %> </h3>
     <h3 class="font-starwars"> Location of your ship: <%= @booking.ship.address %></h3>
-    <h3 class="font-starwars"> Price: <%= @booking.ship.price %> credits</h3>
+    <h3 class="font-starwars"> Price: <%= (@booking.ship.price *  0.05).round %> ℥/day</h3>
 
     <%= link_to "Delete my booking", booking_path(@booking), class: "btn btn-xs btn-primary",
           method: :delete,
@@ -15,6 +15,7 @@
   </div>
 </div>
     <div id="map" style="width: 100%; height: 600px;"></div>
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -24,16 +25,16 @@
       var handler = Gmaps.build('Google');
       handler.buildMap({
         provider: {
-          styles: styles
+          styles: styles,
           },
         internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         if (markers.length == 0) {
-          handler.getMap().setZoom(2);
+          handler.getMap().setZoom(1);
         } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
+          handler.getMap().setZoom(5);
         }
       });
     });
