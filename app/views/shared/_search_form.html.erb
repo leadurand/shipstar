@@ -3,7 +3,7 @@
     <%= f.input :address, name: "country", label: false, placeholder: 'Your planet' %>
   </div>
   <div class="coco-fil2">
-  <%= f.input :ships_class, name: "class", placeholder: "Spaceship' class", label: false, collection: ShipsClass.all.order('name') %>
+  <%= f.input :ships_class, name: "class", prompt: "- Choose a spaceship class -", label: false, collection: ShipsClass.all.order('name') %>
   </div>
   <%= f.submit "Let's fly away", name: nil, class: "btn btn-primary" %>
 <% end %>

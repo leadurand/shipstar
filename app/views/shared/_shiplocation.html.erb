@@ -1,32 +1,3 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
-  <div class="container text-center">
-
-    <%= link_to 'Back to your bookings', bookings_path, class: "btn btn-xs btn-primary" %>
-    <h1 class="font-starwars"> Your booking </h1>
-    <h2 class="font-starwars"> FROM <%= @booking.start_at.to_time.strftime('%b %e') %> TO <%= @booking.end_at.to_time.strftime('%b %e') %> </h2>
-    <h2 class="font-starwars"> Ship: <%= "#{@booking.ship.name} (#{@booking.ship.ships_model.name
-    })" %> </h2>
-    <h3 class="font-starwars"> Owner: <%= link_to @booking.ship.user.name, '#' %> from <%= @booking.ship.user.planet.name %> </h3>
-    <h3 class="font-starwars"> Location of your ship: <%= @booking.ship.address %></h3>
-    <h3 class="font-starwars"> Price: <%= @booking.price %> ℥</h3>
-    <p class="font-starwars"> (<%= (@booking.ship.daily_rent_price).round %> ℥/day)</p>
-    <p class="font-starwars"> Booking Status :
-    <!-- Change color with booking approval status -->
-    <% if @booking.approved == true %>
-    <span style="color: #36F548;"><%= "Approved" %></span>
-    <% else %>
-    <span style="color:red;"><%= "Pending" %></span>
-    <% end %>
-    </p>
-
-    <%= link_to "Delete my booking", booking_path(@booking), class: "btn btn-xs btn-primary",
-          method: :delete,
-          data: { confirm: "Sure, are you?" } %>
-  </div>
-</div>
-    <div id="map" style="width: 100%; height: 600px;"></div>
-
-
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     $(document).ready(function() {

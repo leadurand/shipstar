@@ -1,45 +1,44 @@
 <% content_for(:name_tag) do %>
-  Book <%= @ship.name %> on Shipstar
+   Book <%= @ship.name %> on Shipstar
 <% end %>
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
-  <div class="container text-center">
+<div class="wrapper margin-top-30">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
 
-    <div>
-      <h2 class="font-starwars"><%= @ship.name %></h2>
-      <p class="font-starwars"><i class="fa fa-globe" aria-hidden="true"></i> : <%= @ship.address %></p>
-      <p class="font-starwars"><i class="fa fa-rocket" aria-hidden="true"></i> : <%= @ship.ships_model.name %></p>
-      <p class="font-starwars"><i class="fa fa-cogs" aria-hidden="true"></i> : <%= @ship.ships_model.ships_class.name %></p>
-      <p class="font-starwars">
-        <% if !@ship.mean_rating.nil? %>
-          <% @ship.mean_rating.times do  %>
-            <i class ="fa fa-star" id="star-rating-good" aria-hidden="true"></i>
+        <div class="ship-content">
+          <div class="ship-img">
+          <%= image_tag  @ship.ships_model.image %>
+          <h2 class="font-starwars title"><%= @ship.name %></h2>
+          </div>
+
+          <div class="ship-infos">
+            <p class="infos"><i class="fa fa-globe" aria-hidden="true"></i> :      <%= @ship.address %></p>
+            <p class="infos"><i class="fa fa-rocket" aria-hidden="true"></i> :      <%= @ship.ships_model.name %></p>
+            <p class="infos"><i class="fa fa-cogs" aria-hidden="true"></i> :      <%= @ship.ships_model.ships_class.name %></p>
+            <p class="infos"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> :      <%= @ship.price %> Cr</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="booking-options">
+          <%= render 'bookings/form' %>
+          <%= link_to 'back to research', ships_path %>
+        </div>
+        <div class="reviews">
+          <% @ship.bookings[0..1].each do |booking| %>
+            <p class="review">"<%= booking.content %>"</p>
           <% end %>
-          <% (5 - @ship.mean_rating).times do  %>
-            <i class ="fa fa-star" id="star-rating-bad" aria-hidden="true"></i>
-          <% end %>
-          <p id="rating-secondary">Based on <%= @ship.number_of_reviews %>
-          <% if @ship.number_of_reviews == 1 %>
-            review
-          <% else %>
-            reviews
-          <% end %>
-          </p>
-        <% else %>
-          Not rated yet
-        <% end %>
-      </p>
-      <p class="font-starwars"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> : <%= @ship.daily_rent_price %> ℥/day</p>
+        </div>
+      </div>
+
     </div>
-
-    <div>
-      <%= render 'bookings/form' %>
-    </div>
-
-    <div>
-      <%= link_to 'back to research', ships_path%>
-    </div>
-
-
+    <div id="map" style="width: 100%; height: 300px;"></div>
+    <%= render 'shared/shiplocation' %>
   </div>
 </div>
+
+
+
