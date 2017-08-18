@@ -4,12 +4,18 @@
       <div class="col-xs-12 col-sm-4">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
             <% if ship.ships_model.image.nil? %>
-            <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
+              <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
             <% else %>
-            <%= ship.ships_model.image %>
+              <%= ship.ships_model.image %>
             <% end %>
-          );">
-              <div class="card-category"><%= ship.address %></div>
+            );">
+              <div class="card-category">
+              <% if ship.address[15] == nil %>
+                <%= ship.address %>
+              <% else %>
+                <%= ship.address[0..15] %>...
+              <% end %>
+              </div>
               <div class="card-description text-center">
                 <h2><%= ship.ships_model.name %></h2>
               </div>
