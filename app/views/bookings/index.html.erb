@@ -32,7 +32,9 @@
                   <%= booking.start_at.to_time.strftime('%b %e') %> to
                   <%= booking.end_at.to_time.strftime('%b %e') %>
                 </span></p>
-                <button type="button" class="btn btn-danger btn-acceptBooking">Accept this booking</button>
+
+                <%= link_to "Accept this booking", booking_update_path(booking), class: "btn btn-danger btn-acceptBooking",
+                 method: :patch %>
               <% end %>
             </div>
             <div class="card-price" id="price-booked">

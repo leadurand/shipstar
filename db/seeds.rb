@@ -113,6 +113,7 @@ users_avatars = [
   "http://icon-icons.com/icons2/1070/PNG/512/chewbacca_icon-icons.com_76942.png",
 ]
 
+
 1.upto(70) do |n|
   # user #17 does not exist. Surely we might find a better solution...
   if n == 17
