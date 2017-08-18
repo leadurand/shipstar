@@ -7,9 +7,9 @@
   <div class="row">
     <% @bookings.reverse.each_with_index do |booking| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://vignette3.wikia.nocookie.net/starwars/images/6/6e/Tranquility2.png/revision/latest?cb=20120922034412');">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= booking.ship.ships_model.image %> ');">
           <div class="card-category"> <%= booking.ship.address %> </div>
-          <div class="card-description">
+          <div class="card-description text-center">
               <h2> <%= booking.ship.ships_model.name.capitalize %> </h2>
           </div>
           <div class="card-price" id="price-booked">
