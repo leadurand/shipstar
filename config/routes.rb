@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index]
   resources :users, only: [:show], shallow: true do
     get 'ships', to: 'ships#my_ships'
+    resources :ships, only: [:new, :create]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -10,7 +10,8 @@
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= ship.ships_model.image %> ');">
           <div class="card-category"> <%= ship.address %> </div>
           <div class="card-description text-center">
-              <h2> <%= ship.ships_model.name.capitalize %> </h2>
+              <h2> <%= ship.name %> </h2>
+              <p> <%= ship.ships_model.ships_class.name %> </p>
           </div>
           <div class="card-price" id="price-booked">
               <b><%= (ship.price *  0.05).round %></b> ℥/day
@@ -25,7 +26,7 @@
           <div class="card-description text-center">
               <h2> ADD A NEW SHIP </h2>
           </div>
-          <a class="card-link" href="#"  ></a>
+          <a class="card-link" href=" <%= new_user_ship_path %> "  ></a>
         </div>
       </div>
     </div>

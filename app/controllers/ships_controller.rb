@@ -34,6 +34,27 @@ class ShipsController < ApplicationController
     @ships = Ship.where("user_id = ?", current_user.id)
   end
 
+  def new
+    @ship = Ship.new
+    @user = User.find(current_user)
+  end
+
+  def create
+    @ship = Ship.new(ship_params)
+    @ship.user_id = current_user.id
+    if @ship.save
+      redirect_to user_ships_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def ship_params
+    params.require(:ship).permit(:name, :address, :price, :ships_model_id)
+  end
+
 	# 	@ships = if params[:country]
 	# 		# get the query string from the params
 	# 		@address = params[:country]
