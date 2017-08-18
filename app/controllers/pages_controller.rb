@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-  	@bookings = Booking.all
+  	@users = User.all
+    @bookings = Booking.all
     @ship = Ship.new
   	@ships = Ship.all.last(3)
     @ships_all = Ship.all
