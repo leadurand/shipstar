@@ -1,0 +1,34 @@
+<div class="banner" id="banner-bookings" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
+  <div class="container text-center">
+    <h1 class="font-starwars"> Your ships </h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <% @ships.each do |ship| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= ship.ships_model.image %> ');">
+          <div class="card-category"> <%= ship.address %> </div>
+          <div class="card-description text-center">
+              <h2> <%= ship.name %> </h2>
+              <p> <%= ship.ships_model.ships_class.name %> </p>
+          </div>
+          <div class="card-price" id="price-booked">
+              <b><%= (ship.price *  0.05).round %></b> ℥/day
+          </div>
+          <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+          <a class="card-link" href="#"  ></a>
+        </div>
+      </div>
+      <% end %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" id="add-a-ship" style="background-image: rgba(0, 0, 0, 0.1), url(' # '); border: solid rgba(0, 0, 0, 0.1);">
+          <div class="card-description text-center">
+              <h2> ADD A NEW SHIP </h2>
+          </div>
+          <a class="card-link" href=" <%= new_user_ship_path %> "  ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

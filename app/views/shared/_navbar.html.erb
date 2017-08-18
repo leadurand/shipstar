@@ -10,7 +10,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Rent a ship", ships_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My Ships", user_ships_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Rent a Ship", ships_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
