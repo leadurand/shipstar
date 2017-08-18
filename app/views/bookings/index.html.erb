@@ -71,7 +71,11 @@
             <div class="card-price" id="price-booked">
                 <b><%= (booking.ship.price *  0.05).round %></b> ℥/day
             </div>
-            <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+            <img class="card-user" src= <% if booking.ship.user.avatar.nil? %>
+              <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
+            <% else %>
+              <%= booking.ship.user.avatar %>
+            <% end %> >
             <div class="card-dates">
                   <%= booking.start_at.to_time.strftime('%b %e') %> - <%= booking.end_at.to_time.strftime('%b %e') %>
             </div>

@@ -35,7 +35,11 @@
                   Not rated yet
                 <% end %>
               </div>
-              <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+              <img class="card-user" src= <% if ship.user.avatar.nil? %>
+              <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
+            <% else %>
+              <%= ship.user.avatar %>
+            <% end %> >
               <%= link_to "", ship_path(ship), class: "card-link" %>
           </div>
       </div>

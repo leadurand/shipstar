@@ -11,6 +11,7 @@
         <%= f.input :email, required: true, autofocus: true %>
         <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true %>
+        <%= f.input :avatar, :as => :hidden, :value => "http://icon-icons.com/icons2/1070/PNG/512/ewok_icon-icons.com_76943.png" %>
       </div>
 
       <div class="form-actions">
@@ -21,3 +22,4 @@
   <%= render "devise/shared/links" %>
 
 </div>
+

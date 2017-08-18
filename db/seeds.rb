@@ -98,6 +98,21 @@ fetch_db_planets(lastplan["results"])
 puts "[USERS in #{(Time.now - time).round} sec] Here we are! Populating the galaxy :D"
 puts "This might take a while..."
 
+users_avatars = [
+  "http://icon-icons.com/icons2/1070/PNG/512/ewok_icon-icons.com_76943.png",
+  "http://icon-icons.com/icons2/1070/PNG/512/admiral-ackbar_icon-icons.com_76935.png",
+  "http://icon-icons.com/icons2/1070/PNG/512/qui-gon-jinn_icon-icons.com_76946.png",
+  "https://www.shareicon.net/download/2016/11/21/854798_raider_327x512.png",
+  "http://icon-icons.com/icons2/1070/PNG/512/luke-skywalker_icon-icons.com_76939.png",
+  "http://icon-icons.com/icons2/1070/PNG/512/yoda_icon-icons.com_76947.png",
+  "http://www.iconninja.com/files/632/403/650/princess-leia-icon.svg",
+  "https://www.shareicon.net/download/2016/11/21/854777_darth_410x512.png",
+  "https://www.shareicon.net/download/2016/11/21/854773_c3p0_432x512.png",
+  "http://icon-icons.com/icons2/1070/PNG/512/jawa_icon-icons.com_76960.png",
+  "http://www.iconninja.com/files/301/550/552/jabba-the-hutt-icon.svg",
+  "http://icon-icons.com/icons2/1070/PNG/512/chewbacca_icon-icons.com_76942.png",
+]
+
 1.upto(70) do |n|
   # user #17 does not exist. Surely we might find a better solution...
   if n == 17
@@ -114,7 +129,8 @@ puts "This might take a while..."
       planet_id: p_id,
       specie_id: s_id,
       email: Faker::Internet.email,
-      password: '123456'
+      password: '123456',
+      avatar: users_avatars.sample
     )
   end
 end
