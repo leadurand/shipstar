@@ -98,6 +98,7 @@ fetch_db_planets(lastplan["results"])
 puts "[USERS in #{(Time.now - time).round} sec] Here we are! Populating the galaxy :D"
 puts "This might take a while..."
 
+
 1.upto(70) do |n|
   # user #17 does not exist. Surely we might find a better solution...
   if n == 17
