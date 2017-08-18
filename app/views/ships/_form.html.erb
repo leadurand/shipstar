@@ -6,7 +6,7 @@
           <%= f.input :name, label: "Ship Name", placeholder: "Starship Enterprise" %>
           <%= f.input :address, label: "Country", placeholder: "Monaco" %>
           <%= f.input :price, label: "Ships value", placeholder: "54000" %>
-          <%= f.input :ships_model_id, label: "Model", collection: ShipsModel.all %>
+          <%= f.input :ships_model_id, label: "Model", collection: ShipsModel.all.order('name') %>
 
 
           <%= f.button :submit, class: 'btn btn-primary' %>
