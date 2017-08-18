@@ -3,26 +3,29 @@
     <h1 class="font-starwars"> Your bookings </h1>
   </div>
 </div>
-<div class="container">
-  <div class="row">
-    <% @bookings.reverse.each_with_index do |booking| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= booking.ship.ships_model.image %> ');">
-          <div class="card-category"> <%= booking.ship.address %> </div>
-          <div class="card-description text-center">
-              <h2> <%= booking.ship.ships_model.name.capitalize %> </h2>
+
+<div class="bookings-show">
+  <div class="container">
+    <div class="row">
+      <% @bookings.reverse.each_with_index do |booking| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= booking.ship.ships_model.image %> ');">
+            <div class="card-category"> <%= booking.ship.address %> </div>
+            <div class="card-description text-center">
+                <h2> <%= booking.ship.ships_model.name.capitalize %> </h2>
+            </div>
+            <div class="card-price" id="price-booked">
+                <b><%= (booking.ship.price *  0.05).round %></b> ℥/day
+            </div>
+            <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+            <div class="card-dates">
+                  <%= booking.start_at.to_time.strftime('%b %e') %> - <%= booking.end_at.to_time.strftime('%b %e') %>
+            </div>
+            <a class="card-link" href="<%= booking_path(booking) %>"  ></a>
           </div>
-          <div class="card-price" id="price-booked">
-              <b><%= (booking.ship.price *  0.05).round %></b> ℥/day
-          </div>
-          <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
-          <div class="card-dates">
-                <%= booking.start_at.to_time.strftime('%b %e') %> - <%= booking.end_at.to_time.strftime('%b %e') %>
-          </div>
-          <a class="card-link" href="<%= booking_path(booking) %>"  ></a>
         </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
 </div>
