@@ -29,7 +29,7 @@
     <div class="col-sm-6 col-xs-12">
       <img class="card-review-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
       <div class="card-review-content">
-        <p class="card-review-title"><%= User.find_by(name: "Plo Koon").name %> rent a <%= ShipsModel.find(59).name %> on Shipstar</p>
+        <p class="card-review-title"><%= User.find_by(name: "Plo Koon").name %> rent a <%= ShipsModel.find_by(name: "Star Destroyer").name %> on Shipstar</p>
         <p class="card-review-comment">“That ship's saved my life quite a few times. She's the fastest hunk of junk in the galaxy!”</p>
       </div>
     </div>
