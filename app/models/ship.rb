@@ -12,4 +12,25 @@ class Ship < ApplicationRecord
   def daily_rent_price
     (self.price * 0.05).round
   end
+
+  def mean_rating
+    if !self.bookings.count.zero?
+      sum = 0
+      self.bookings.each do |booking|
+        sum += booking.rating if !booking.rating.nil?
+      end
+      (sum / self.bookings.count).round
+    end
+  end
+
+  def number_of_reviews
+    if !self.bookings.count.zero?
+      sum = 0
+      self.bookings.each do |booking|
+        sum += 1 unless booking.rating.nil?
+      end
+      sum
+    end
+  end
+
 end
