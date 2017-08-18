@@ -28,7 +28,10 @@ class ShipsController < ApplicationController
     if @ships == []
       flash.now[:search_error] = "Sorry, no matches..."
     end
+  end
 
+  def my_ships
+    @ships = Ship.where("user_id = ?", current_user.id)
   end
 
 	# 	@ships = if params[:country]
