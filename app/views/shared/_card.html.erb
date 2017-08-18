@@ -24,13 +24,13 @@
               </div>
               <div class="card-rating">
                 <% if !ship.mean_rating.nil? %>
-                  <%= ship.number_of_reviews %> ‌•
                   <% ship.mean_rating.times do  %>
                     <i class ="fa fa-star" id="star-rating-good" aria-hidden="true"></i>
                   <% end %>
                   <% (5 - ship.mean_rating).times do  %>
                     <i class ="fa fa-star" id="star-rating-bad" aria-hidden="true"></i>
                   <% end %>
+                  • <%= ship.number_of_reviews %>
                 <% else %>
                   Not rated yet
                 <% end %>

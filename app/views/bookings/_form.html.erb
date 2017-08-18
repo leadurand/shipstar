@@ -1,12 +1,8 @@
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <%= simple_form_for([@ship, @booking]) do |f| %>
-          <%= f.error_notification %>
+<%= simple_form_for([@ship, @booking]) do |f| %>
+  <%= f.error_notification %>
 
-          <%= f.input :start_at, label: "Book from : " %>
-          <%= f.input :end_at, label: "to : " %>
+  <%= f.input :start_at, label: "Fly from : " %>
+  <%= f.input :end_at, label: "to : " %>
 
-          <%= f.button :submit, class: 'btn btn-primary' %>
-        <% end %>
-    </div>
-  </div>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
