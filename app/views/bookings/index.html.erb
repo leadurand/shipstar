@@ -1,10 +1,64 @@
+<!-- Owner Part -->
+
+<div class="banner" id="banner-bookings" style= "background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
+  <div class="container text-center">
+    <h1 class="font-starwars"> Your Ships </h1>
+  </div>
+</div>
+
+<div class="ships-show">
+  <div class="container">
+    <div class="row">
+      <% current_user.ships.each do |ship| %>
+        <% ship.bookings.reverse.each do |booking| %>
+          <div class="card" style="height:15vh; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= ship.ships_model.image %> ');">
+            <div class="card-category"> <%= ship.ships_model.name.capitalize %> </div>
+            <div class="card-description text-center font-starwars">
+                <% if booking.approved == true %>
+                <p><span style="color: #36F548;">
+                  <%= User.find(booking.user_id).name %>,
+                  <%= User.find(booking.user_id).specie.name %>
+                   from
+                  <%= User.find(booking.user_id).planet.name %> :
+                  <%= booking.start_at.to_time.strftime('%b %e') %> to
+                  <%= booking.end_at.to_time.strftime('%b %e') %>
+                  </span></p>
+                <% else %>
+                <p><span style="color:red;">
+                  <%= User.find(booking.user_id).name %>,
+                  <%= User.find(booking.user_id).specie.name %>
+                   from
+                  <%= User.find(booking.user_id).planet.name %> :
+                  <%= booking.start_at.to_time.strftime('%b %e') %> to
+                  <%= booking.end_at.to_time.strftime('%b %e') %>
+                </span></p>
+                <button type="button" class="btn btn-danger btn-acceptBooking">Accept this booking</button>
+              <% end %>
+            </div>
+            <div class="card-price" id="price-booked">
+              <b><%= (ship.price *  0.05).round %></b> ℥/day
+            </div>
+            <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Pilot Part -->
+
 <div class="banner" id="banner-bookings" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
   <div class="container text-center">
     <h1 class="font-starwars"> Your bookings </h1>
   </div>
 </div>
 
-<div class="bookings-show">
+
   <div class="container">
     <div class="row">
       <% @bookings.reverse.each do |booking| %>
@@ -27,5 +81,3 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
