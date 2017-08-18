@@ -28,6 +28,25 @@
           <%= link_to 'back to research', ships_path %>
         </div>
         <div class="reviews">
+          <p class="font-starwars">
+            <% if !@ship.mean_rating.nil? %>
+                    <% @ship.mean_rating.times do  %>
+                      <i class ="fa fa-star good-star" id="star-rating-good" aria-hidden="true"></i>
+                    <% end %>
+                    <% (5 - @ship.mean_rating).times do  %>
+                      <i class ="fa fa-star good-star" id="star-rating-bad" aria-hidden="true"></i>
+                    <% end %>
+                    <p id="rating-secondary">Based on <%= @ship.number_of_reviews %>
+                    <% if @ship.number_of_reviews == 1 %>
+                      review
+                    <% else %>
+                      reviews
+                    <% end %>
+                    </p>
+                  <% else %>
+                    Not rated yet
+                  <% end %>
+          </p>
           <% @ship.bookings[0..1].each do |booking| %>
             <p class="review">"<%= booking.content %>"</p>
           <% end %>
