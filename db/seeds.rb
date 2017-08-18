@@ -179,7 +179,8 @@ puts "[BOOKINGS in #{(Time.now - time).round} sec] Let's do some business!"
   content: Faker::StarWars.quote,
   rating: rand(3..5),
   user_id: User.all.sample.id,
-  ship_id: Ship.all.sample.id
+  ship_id: Ship.all.sample.id,
+  booked: true
   )
 end
 
