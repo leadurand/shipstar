@@ -1,0 +1,86 @@
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+// INFOS
+.ship-content {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.ship_infos {
+  height: 236px;
+  margin-bottom: 30px;
+}
+
+.infos {
+  color: black;
+  letter-spacing: 1px;
+  padding: 14px 0px 10px 20px;
+  font-family: "STARWARS";
+}
+
+// IMAGE
+.ship-img {
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.ship-img img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  font-size: 70px;
+  justify-content: center;
+  width: 80%;
+  left: 10%;
+  bottom: 33px;
+  font-size: 70px;
+  margin: 0;
+}
+
+// FORMULAIRE
+.booking-options {
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  display: flow-root;
+  padding: 25px 0px;
+  font-family: "STARWARS";
+  color: black;
+}
+
+.reviews{
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  align-items: center;
+  height: 200px;
+  margin-top: 30px;
+  font-family: "STARWARS";
+  overflow-y: scroll;
+  padding: 20px;
+  margin-bottom: 30px;
+  color: #999999;
+  font-style: italic;
+}
+
+// MAPS
+.ship-location {
+  border-radius: 4px;
+  margin-top: 30px !important;
+}
+
+
+
