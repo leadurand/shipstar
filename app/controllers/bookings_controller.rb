@@ -47,13 +47,8 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_at, :end_at)
   end
-
-  # def require_login
-  #   if current_user # is NOT logged
-  #     redirect_to "devise/sessions/new"
-
-  #   else
-  #     render :create
-  #   end
-  # end
 end
+
+# reminder : 3 status (Approved pending canceled)
+# Authorize to add review => Only When booking is approved
+# delete this review
