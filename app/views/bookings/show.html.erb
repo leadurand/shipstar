@@ -16,7 +16,13 @@
           </div>
 
           <div class="ship-infos ship-rented">
-            <p class="infos"><i class="fa fa-user" aria-hidden="true"></i> The Owner : <%= link_to @booking.ship.user.name, '#' %> from <%= @booking.ship.user.planet.name %></p>
+            <p class="infos"><i class="fa fa-user" aria-hidden="true"></i> The Owner : 
+               <% if @booking.ship.user.name.nil? %>
+               <%= @booking.ship.user.first_name %> <%= @booking.ship.user.last_name %>
+               <% else %>
+               <%= @booking.ship.user.name %>
+               <% end %>
+            </p>
             <p class="infos"><i class="fa fa-globe" aria-hidden="true"></i> Where to meet : <%= @booking.ship.address %></p>
             <p class="infos"><i class="fa fa-rocket" aria-hidden="true"></i> The Ship: <%= @booking.ship.ships_model.name %></p>
             <p class="infos"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Price : <%= (@booking.ship.daily_rent_price).round %> ℥/day</p>

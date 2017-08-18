@@ -42,7 +42,7 @@ class ShipsController < ApplicationController
   end
 
   def my_ships
-    @ships = Ship.where("user_id = ?", current_user.id)
+    @ships = Ship.where("user_id = ?", current_user.id).order('created_at DESC')
   end
 
   def new

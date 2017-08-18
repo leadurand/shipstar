@@ -9,7 +9,7 @@
 <div class="wrapper">
 
   <div class="container ships-show">
-    <p class="ships-show-title">1 million users and over 40,000 private ships for rent on earth</p>
+    <p class="ships-show-title">1 million users and over 40,000 private ships for rent on Earth</p>
     <div class="row">
       <%= render "shared/card" %>
    </div>
@@ -22,7 +22,7 @@
       </div>
       <div class="col-sm-6 col-xs-12">
         <div class="card-review">
-          <img class="card-review-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+          <img class="card-review-user" src= "<%= User.all.sample.avatar %>" >
           <div class="card-review-content">
               <p class="card-review-title"><%= User.find_by(name: "Han Solo").name %> rent a Millenium Falcon on Shipstar</p>
               <p class="card-review-comment">“It’s the ship that made the Kessel run in less than twelve parsecs. I’ve outrun Imperial starships. Not the local bulk cruisers, mind you. I’m talking about the big Corellian ships, now. She’s fast enough for you, old man.”</p>
@@ -31,7 +31,7 @@
       </div>
       <div class="col-sm-6 col-xs-12">
         <div class="card-review">
-          <img class="card-review-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
+          <img class="card-review-user" src="<%= User.all.sample.avatar %>">
           <div class="card-review-content">
             <p class="card-review-title"><%= User.find_by(name: "Plo Koon").name %> rent a <%= ShipsModel.find_by(name: "Star Destroyer").name %> on Shipstar</p>
             <p class="card-review-comment">“That ship's saved my life quite a few times. She's the fastest hunk of junk in the galaxy!”</p>
