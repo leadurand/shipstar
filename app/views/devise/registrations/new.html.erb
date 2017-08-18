@@ -1,20 +1,23 @@
-<h2>Sign up</h2>
+<div class="container devise-form">
+    <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name, required: true, autofocus: true%>
-    <%= f.input :specie_id, required: true, autofocus: true, collection: Specie.all %>
-    <%= f.input :planet_id, required: true, autofocus: true, collection: Planet.all %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
+      <div class="form-inputs">
+        <%= f.input :name, required: true, autofocus: true%>
+        <%= f.input :specie_id, required: true, autofocus: true, collection: Specie.all %>
+        <%= f.input :planet_id, required: true, autofocus: true, collection: Planet.all %>
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, required: true %>
+      </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up" %>
+      </div>
+    <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+
+</div>

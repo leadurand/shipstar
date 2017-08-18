@@ -4,17 +4,36 @@
       <div class="col-xs-12 col-sm-4">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
             <% if ship.ships_model.image.nil? %>
-            <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
+              <%= 'http://ecole-fougueyrolles.e-monsite.com/medias/images/vaisseau.han.solo.jpg' %>
             <% else %>
-            <%= ship.ships_model.image %>
+              <%= ship.ships_model.image %>
             <% end %>
-          );">
-              <div class="card-category"><%= ship.address %></div>
+            );">
+              <div class="card-category">
+              <% if ship.address[15] == nil %>
+                <%= ship.address %>
+              <% else %>
+                <%= ship.address[0..15] %>...
+              <% end %>
+              </div>
               <div class="card-description text-center">
                 <h2><%= ship.ships_model.name %></h2>
               </div>
               <div class="card-price">
-                <p><%= (ship.price *  0.05).round %></b> ℥/day</p>
+               <b> <%= ship.daily_rent_price %></b> ℥/day
+              </div>
+              <div class="card-rating">
+                <% if !ship.mean_rating.nil? %>
+                  <%= ship.number_of_reviews %> ‌•
+                  <% ship.mean_rating.times do  %>
+                    <i class ="fa fa-star" id="star-rating-good" aria-hidden="true"></i>
+                  <% end %>
+                  <% (5 - ship.mean_rating).times do  %>
+                    <i class ="fa fa-star" id="star-rating-bad" aria-hidden="true"></i>
+                  <% end %>
+                <% else %>
+                  Not rated yet
+                <% end %>
               </div>
               <img class="card-user" src="https://www.flaticon.com/premium-icon/icons/svg/280/280943.svg">
               <%= link_to "", ship_path(ship), class: "card-link" %>
