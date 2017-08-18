@@ -2,6 +2,17 @@ class ShipsController < ApplicationController
 	def show
 	  @ship = Ship.find(params[:id])
 	  @booking = Booking.new
+    @ships = []
+    @ships << @ship
+    @hash = Gmaps4rails.build_markers(@ships) do |ship, marker|
+      marker.lat ship.latitude
+      marker.lng ship.longitude
+      marker.picture({
+        "url" => view_context.image_path('rocket_pointer.png'),
+        "width" => 64,
+        "height" => 64
+      })
+    end
 	end
 
 	def index

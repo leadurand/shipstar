@@ -1,0 +1,5 @@
+<%= simple_form_for([ @ship, @booking ], remote: true) do |form| %>
+  <%= form.input :rating, label: "Rating : " %>
+  <%= form.input :content, label: "Comment : " %>
+  <%= form.button :submit, "Add review", class: 'btn btn-primary'%>
+<% end %>
