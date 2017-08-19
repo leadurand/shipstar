@@ -21,6 +21,8 @@ class ShipsController < ApplicationController
     @class = params[:index][:ships_class] unless params[:index].nil?
     @ships = Ship.all
 
+    # Search bar, all possibilities for both fields of the form :
+
     if @class.blank? && @address.blank?
       @ships
       elsif @class != "" && @address.blank?
@@ -65,6 +67,8 @@ class ShipsController < ApplicationController
   def ship_params
     params.require(:ship).permit(:name, :address, :price, :ships_model_id)
   end
+
+  # => Code de Clement sur la barre de recherche
 
 	# 	@ships = if params[:country]
 	# 		# get the query string from the params

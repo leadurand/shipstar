@@ -1,4 +1,4 @@
-<!-- Owner Part, no banner if no bookings -->
+<!-- Owner Part, no banner if no ships owned -->
 <% unless current_user.ships.empty? %>
 <div class="banner" id="banner-bookings" style= "background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
   <div class="container text-center">
@@ -9,6 +9,7 @@
 <div class="ships-show">
   <div class="container">
     <div class="row">
+    <!-- Iterate on each ships, then on each bookings of ship ,reverse, for most recents in first place -->
       <% current_user.ships.each do |ship| %>
         <% ship.bookings.reverse.each do |booking| %>
           <div class="card" style="height:15vh; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= ship.ships_model.image %> ');">

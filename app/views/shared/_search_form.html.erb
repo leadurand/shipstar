@@ -1,27 +1,26 @@
 <%= simple_form_for(:index, url: ships_path, method: :get, html: { class: 'coco' }) do |f| %>
-  <div class="coco-fil1">
-    <%= f.input :address, name: "country", label: false, placeholder: 'Your planet' %>
-  </div>
-  <div class="coco-fil2">
+<div class="coco-fil1">
+  <%= f.input :address, name: "country", label: false, placeholder: 'Your planet' %>
+</div>
+<div class="coco-fil2">
   <%= f.input :ships_class, name: "class", prompt: "- Choose a spaceship class -", label: false, collection: ShipsClass.all.order('name') %>
-  </div>
-  <%= f.submit "Let's fly away", name: nil, class: "btn btn-primary" %>
+</div>
+<%= f.submit "Let's fly away", name: nil, class: "btn btn-primary" %>
 <% end %>
 
 
+<!-- script to make the custom flash no search results, disappear on a click on search form,
+special syntax for the js because the flash has default behavior -->
 
 <% content_for :after_js do %>
   <script>
-     $(document).ready(function() {
-            $(".coco").on('click', function(e) {
-
-                if ($(".alert-search").is(":visible")) {
-                  $(".alert-search").hide();
-                  console.log(("ok"))
-                  $(".coco").submit();
-                }
-
-            });
+   $(document).ready(function() {
+    $(".coco").on('click', function(e) {
+      if ($(".alert-search").is(":visible")) {
+        $(".alert-search").hide();
+        $(".coco").submit();
+      }
     });
+  });
   </script>
 <% end %>

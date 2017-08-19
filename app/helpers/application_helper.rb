@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+
+  # essai d'utilisation de la gem thumbnailer pour recupérer des images de vaisseaux
+  # dynamiquement, assez infructueux, fonctionne sans doute mieux avec l'api google.
+
   # def image(model)
 
   #   # Render array of image with name attribute of a given  model

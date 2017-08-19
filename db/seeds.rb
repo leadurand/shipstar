@@ -91,9 +91,6 @@ fetch_db_planets(lastplan["results"])
 #   break if species["next"].nil?
 # end
 
-# populate ships-models table with API "model" and "starship_class"
-
-
 # [USERS] Create 70 users and get goods planets and species from API and ids from table
 puts "[USERS in #{(Time.now - time).round} sec] Here we are! Populating the galaxy :D"
 puts "This might take a while..."
@@ -200,6 +197,9 @@ puts "[BOOKINGS in #{(Time.now - time).round} sec] Let's do some business!"
   approved: true
   )
 end
+
+# generate models image in the good order, hope the order of the api ships models will dont change.
+# Ideally the best will be to use google image api but it may be too random.
 
 modelsimages = [
   "http://fractalsponge.net/images/gallery/slides/Executor.jpg",
