@@ -1,0 +1,7 @@
+<div class="banner" id="image-ship-map" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.3) 0%, rgba(0,36,61,0.3) 0%), url('<%= ship.ships_model.image %>');">
+  <div class="container text-center">
+    <h3><%= ship.ships_model.ships_class.name %></h3>
+    <p><%= ship.address %></p>
+    <%= link_to "Details", ship_path(ship), target: :blank, class: "btn btn-warning" %>
+  </div>
+</div>

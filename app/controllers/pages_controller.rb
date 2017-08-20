@@ -13,7 +13,7 @@ class PagesController < ApplicationController
            "width" => 64,
            "height" => 64
          })
-         # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+         marker.infowindow render_to_string(partial: "/ships/map_box", locals: { ship: ship })
     end
   end
 end
