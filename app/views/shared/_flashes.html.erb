@@ -1,26 +1,27 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= notice %>
+</div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= alert %>
-  </div>
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= alert %>
+</div>
 <% end %>
+<!-- Custom Flash used for search no match, nice result but maybe not the best way to go
+because of default behavior of flashes messages, may be better with Jquery -->
 <% if search_error %>
-  <div class="alert alert-success alert-dismissible alert-search" role="alert" style="color:black">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-     <strong><%= search_error %></strong>
-     <br>
-     <br>
-     <h5>How about looking some of our most popular ships instead?</h5>
-    <div class="alert-search">
+<div class="alert alert-success alert-dismissible alert-search" role="alert" style="color:black">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong><%= search_error %></strong>
+  <br>
+  <br>
+  <h5>How about looking some of our most popular ships instead?</h5>
+  <div class="alert-search">
     <% @ships = Ship.all.last(3) %>
     <%= render "shared/card" %>
-    </div>
   </div>
-
+</div>
 <% end %>

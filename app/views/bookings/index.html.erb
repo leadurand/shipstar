@@ -1,5 +1,5 @@
-<!-- Owner Part -->
-
+<!-- Owner Part, no banner if no ships owned -->
+<% unless current_user.ships.empty? %>
 <div class="banner" id="banner-bookings" style= "background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 0%), url('https://ak8.picdn.net/shutterstock/videos/15642988/thumb/1.jpg');">
   <div class="container text-center">
     <h1 class="font-starwars"> Your Ships </h1>
@@ -9,11 +9,13 @@
 <div class="ships-show">
   <div class="container">
     <div class="row">
+    <!-- Iterate on each ships, then on each bookings of ship ,reverse, for most recents in first place -->
       <% current_user.ships.each do |ship| %>
         <% ship.bookings.reverse.each do |booking| %>
           <div class="card" style="height:15vh; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(' <%= ship.ships_model.image %> ');">
             <div class="card-category"> <%= ship.ships_model.name.capitalize %> </div>
             <div class="card-description text-center font-starwars">
+            <!-- If the booked is approved construct a green sentence and no button -->
                 <% if booking.approved == true %>
                 <p><span style="color: #36F548;">
                   <%= User.find(booking.user_id).name %>,
@@ -23,6 +25,7 @@
                   <%= booking.start_at.to_time.strftime('%b %e') %> to
                   <%= booking.end_at.to_time.strftime('%b %e') %>
                   </span></p>
+            <!-- Else the booked is pending construct a red sentence with the accept button -->
                 <% else %>
                 <p><span style="color:red;">
                   <%= User.find(booking.user_id).name %>,
@@ -47,7 +50,7 @@
       </div>
     </div>
   </div>
-
+<% end %>
 
 
 
