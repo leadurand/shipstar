@@ -49,11 +49,11 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li> <%= link_to "My Ships", user_ships_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %> </li>
+        <li> <%= link_to "Rent a Ship", ships_path, class: "navbar-wagon-item navbar-wagon-link" %> </li>
+        <li> <%= link_to "My Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %> </li>
+        <li> <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %> </li>
       </ul>
     </div>
   </div>
 </div>
-
