@@ -17,7 +17,6 @@ gem 'devise'
 gem 'faker'
 gem 'swapi'
 gem 'link_thumbnailer'
-# gem 'random-location'
 gem 'geocoder'
 gem "coffee-rails"
 gem "gmaps4rails"
@@ -44,10 +43,7 @@ group :development, :test do
   gem 'faker'
   gem 'swapi'
   gem 'link_thumbnailer'
-  # gem 'random-location'
   gem 'geocoder'
   gem "coffee-rails"
   gem "gmaps4rails"
 end
-
-
